@@ -68,7 +68,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                 </Button>
             </div>
 
-            <div className="relative flex h-[100vh] items-center justify-center flex-col gap-6">
+            <div className="relative flex h-[40vh] items-center justify-end flex-col gap-6 pb-8">
                 {/* Radial spotlight */}
                 <div
                     aria-hidden="true"

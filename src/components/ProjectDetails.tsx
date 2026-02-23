@@ -60,7 +60,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
     ];
 
     return (
-        <main className="min-h-screen w-full bg-background text-foreground relative">
+        <main className="dark min-h-screen w-full bg-background text-foreground relative">
             <div className="fixed top-6 left-6 z-50">
                 <Button variant="outline" size="sm" onClick={onBack} className="bg-background/80 backdrop-blur-md">
                     <ArrowLeft className="w-4 h-4 mr-2" />

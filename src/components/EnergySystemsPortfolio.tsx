@@ -172,12 +172,12 @@ const EnergySystemsPortfolio: React.FC = () => {
     ];
 
     const skills: Skill[] = [
-        { name: 'Power Systems Analysis', level: 95, icon: <Zap className="w-5 h-5" /> },
-        { name: 'Renewable Energy Design', level: 92, icon: <Sun className="w-5 h-5" /> },
-        { name: 'Grid Integration', level: 88, icon: <TrendingUp className="w-5 h-5" /> },
-        { name: 'Energy Storage Systems', level: 90, icon: <Battery className="w-5 h-5" /> },
-        { name: 'SCADA & Control Systems', level: 85, icon: <Wind className="w-5 h-5" /> },
-        { name: 'Energy Modeling & Simulation', level: 93, icon: <BookOpen className="w-5 h-5" /> }
+        { name: 'Solar PV Systems', level: 95, icon: <Sun className="w-5 h-5" /> },
+        { name: 'Heat Pump & HVAC Tech', level: 92, icon: <Wind className="w-5 h-5" /> },
+        { name: 'Quality Management', level: 90, icon: <Award className="w-5 h-5" /> },
+        { name: 'Data & Analytics', level: 88, icon: <TrendingUp className="w-5 h-5" /> },
+        { name: 'System Commissioning', level: 85, icon: <Zap className="w-5 h-5" /> },
+        { name: 'Project Management', level: 93, icon: <BookOpen className="w-5 h-5" /> }
     ];
 
     const experience: Experience[] = [
@@ -285,10 +285,10 @@ const EnergySystemsPortfolio: React.FC = () => {
     ];
 
     const certifications = [
-        'Professional Engineer (PE) - Electrical',
-        'NABCEP PV Installation Professional',
-        'Certified Energy Manager (CEM)',
-        'Project Management Professional (PMP)'
+        'SolarEdge Expert Installer Certification',
+        'SolarEdge Fundamentals Certificate',
+        'ISO 14001, 9001, 45001 Internal Auditor',
+        'Google Data Analytics Professional Certificate'
     ];
 
     useEffect(() => {
@@ -619,7 +619,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                     <div className="space-y-3">
                                         <h4 className="font-semibold">Software & Tools</h4>
                                         <div className="flex flex-wrap gap-2">
-                                            {['MATLAB', 'Python', 'ETAP', 'PVsyst', 'Homer', 'AutoCAD', 'SCADA', 'DIgSILENT'].map((tool) => (
+                                            {['Power BI', 'Excel (VBA)', 'Python (Pandas)', 'SAP', 'Office 365', 'SolarEdge', 'Building Automation'].map((tool) => (
                                                 <Badge key={tool} variant="secondary">{tool}</Badge>
                                             ))}
                                         </div>

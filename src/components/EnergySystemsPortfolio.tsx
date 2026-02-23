@@ -25,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
 import { useTheme } from './theme-provider';
 
 interface Project {
@@ -83,6 +84,16 @@ const EnergySystemsPortfolio: React.FC = () => {
     const { scrollYProgress } = useScroll();
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+    const NAV_ITEMS = [
+        { id: 'home', tile: 'Home' },
+        { id: 'about', tile: 'About' },
+        { id: 'projects', tile: 'Projects' },
+        { id: 'publications', tile: 'Publications' },
+        { id: 'experience', tile: 'Experience' },
+        { id: 'testimonials', tile: 'Testimonials' },
+        { id: 'contact', tile: 'Contact' }
+    ];
 
     const projects: Project[] = [
         {
@@ -335,17 +346,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                         </motion.div>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-6">
-                            {['home', 'about', 'projects', 'publications', 'experience', 'testimonials', 'contact'].map((section) => (
-                                <button
-                                    key={section}
-                                    onClick={() => scrollToSection(section)}
-                                    className={`capitalize transition-colors ${activeSection === section ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-                                        }`}
-                                >
-                                    {section}
-                                </button>
-                            ))}
+                        <div className="hidden md:flex items-center gap-2">
+                            <AnimatedNavigationTabs
+                                items={NAV_ITEMS}
+                                activeItem={activeSection}
+                                onTabChange={scrollToSection}
+                            />
+
                             <Button
                                 variant="ghost"
                                 size="icon"

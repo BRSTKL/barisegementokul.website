@@ -16,7 +16,6 @@ import {
     X,
     ExternalLink,
     Download,
-    Quote,
     FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

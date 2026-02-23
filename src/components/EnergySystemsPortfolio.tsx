@@ -668,8 +668,8 @@ const EnergySystemsPortfolio: React.FC = () => {
                             </p>
                         </div>
 
-                        <Tabs defaultValue="all" className="mb-12">
-                            <TabsList className="flex flex-wrap h-auto w-full max-w-4xl mx-auto justify-center gap-2 p-1">
+                        <Tabs defaultValue="all" className="mb-12 flex flex-col items-center">
+                            <TabsList className="flex flex-wrap h-auto w-fit justify-center gap-2 p-1">
                                 <TabsTrigger value="all">All</TabsTrigger>
                                 <TabsTrigger value="Sustainability">Sustainability</TabsTrigger>
                                 <TabsTrigger value="Production">Production</TabsTrigger>

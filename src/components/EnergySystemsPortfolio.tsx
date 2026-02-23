@@ -338,7 +338,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             journal: 'Technical Report',
             year: '2024',
             authors: 'Barış Egemen Tokul',
-            link: '/publications/Pvsyst Project Berlinovo_60.VC0-Report.pdf'
+            link: '/publications/Pvsyst_Project_Berlinovo_Report.pdf'
         }
     ];
 

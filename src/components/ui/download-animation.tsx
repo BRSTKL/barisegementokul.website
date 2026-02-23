@@ -18,8 +18,8 @@ export const DownloadButton = ({ onDownload, label = "Resume", className = "" }:
 
         // Create a temporary link element to trigger the download
         const link = document.createElement('a');
-        link.href = '/resume/BarisEgemenTokul_CV.docx';
-        link.download = 'BarisEgemenTokul_CV.docx';
+        link.href = '/resume/BarisEgemenTokul_CV.pdf';
+        link.download = 'BarisEgemenTokul_CV.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

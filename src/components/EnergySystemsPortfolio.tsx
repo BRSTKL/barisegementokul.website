@@ -565,10 +565,10 @@ const EnergySystemsPortfolio: React.FC = () => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         {[
-                            { label: 'MW Designed', value: '500+' },
-                            { label: 'Projects', value: '50+' },
-                            { label: 'Years Experience', value: '8+' },
-                            { label: 'Certifications', value: '4' }
+                            { label: 'Technical Projects', value: '15+' },
+                            { label: 'Years Experience', value: '3' },
+                            { label: 'Certifications', value: '4' },
+                            { label: 'Languages', value: '3' }
                         ].map((stat, index) => (
                             <Card key={index} className="bg-card/50 backdrop-blur">
                                 <CardContent className="pt-6">

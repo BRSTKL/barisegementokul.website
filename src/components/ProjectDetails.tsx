@@ -16,6 +16,9 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
     React.useEffect(() => {
         const lenis = new Lenis()
 
+        // Sayfa açıldığında her zaman en üstte başlatır
+        lenis.scrollTo(0, { immediate: true })
+
         function raf(time: number) {
             lenis.raf(time)
             requestAnimationFrame(raf)
@@ -68,7 +71,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                 </Button>
             </div>
 
-            <div className="relative flex h-[40vh] items-center justify-end flex-col gap-6 pb-8 z-10">
+            <div className="relative flex h-[45vh] items-center justify-end flex-col gap-6 pb-12 z-10">
                 {/* Radial spotlight */}
                 <div
                     aria-hidden="true"
@@ -88,7 +91,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                     Scroll Down for Details
                 </p>
             </div>
-            <div className="-mt-32 relative z-0">
+            <div className="-mt-48 relative z-0">
                 <ZoomParallax images={images} />
             </div>
             <div className="h-[50vh] flex items-center justify-center">

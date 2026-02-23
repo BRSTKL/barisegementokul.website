@@ -17,13 +17,15 @@ import {
     ExternalLink,
     Download,
     Quote,
-    FileText
+    FileText,
+    Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useTheme } from './theme-provider';
 
 interface Project {
     id: string;
@@ -74,6 +76,7 @@ interface Publication {
 }
 
 const EnergySystemsPortfolio: React.FC = () => {
+    const { theme, setTheme } = useTheme();
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -343,7 +346,16 @@ const EnergySystemsPortfolio: React.FC = () => {
                                     {section}
                                 </button>
                             ))}
-                            <Button size="sm" className="ml-4">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                                className="ml-2"
+                                aria-label="Toggle theme"
+                            >
+                                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                            </Button>
+                            <Button size="sm" className="ml-2">
                                 <Download className="w-4 h-4 mr-2" />
                                 Resume
                             </Button>
@@ -376,7 +388,18 @@ const EnergySystemsPortfolio: React.FC = () => {
                                         {section}
                                     </button>
                                 ))}
-                                <Button size="sm" className="w-full mt-4">
+                                <div className="flex items-center justify-between mt-4 mb-2">
+                                    <span className="text-sm font-medium">Theme</span>
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                                        aria-label="Toggle theme"
+                                    >
+                                        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                                    </Button>
+                                </div>
+                                <Button size="sm" className="w-full mt-2">
                                     <Download className="w-4 h-4 mr-2" />
                                     Resume
                                 </Button>

@@ -108,74 +108,74 @@ const EnergySystemsPortfolio: React.FC = () => {
     const projects: Project[] = [
         {
             id: '1',
-            title: 'Solar Farm Optimization',
-            description: 'Designed and implemented a 50MW solar farm with advanced tracking systems, increasing energy yield by 23%.',
+            title: 'Energy Efficiency & Compliance Optimization',
+            description: 'Improved energy performance and safety compliance across HVAC, heat pump, and manufacturing systems by integrating ISO standards and performance monitoring tools.',
             category: 'Sustainability',
-            tags: ['PV Systems', 'SCADA', 'Energy Modeling'],
+            tags: ['Energy Efficiency', 'ISO Standards', 'Heat Pumps', 'Building Systems', 'Performance Monitoring'],
             image: 'solar',
             metrics: [
-                { label: 'Capacity', value: '50MW' },
-                { label: 'Efficiency Gain', value: '+23%' },
-                { label: 'ROI', value: '4.2 years' }
+                { label: 'Energy Efficiency Impr.', value: '+12%' },
+                { label: 'Compliance Impl.', value: 'ISO Stds.' },
+                { label: 'Defect Reduction', value: '8%' }
             ],
             detailedMetrics: [
-                { label: 'Annual Generation', value: '95 GWh' },
-                { label: 'CO2 Avoided', value: '42,000 tons' },
-                { label: 'Homes Powered', value: '15,000' }
+                { label: 'Standard', value: '9001/14001/45001' },
+                { label: 'Focus', value: 'HVAC & Heat Pumps' },
+                { label: 'Tooling', value: 'Perf. Monitoring' }
             ]
         },
         {
             id: '2',
-            title: 'Wind Energy Integration',
-            description: 'Led grid integration project for 100MW offshore wind farm, ensuring stable power delivery and grid compliance.',
+            title: 'Manufacturing Process Optimization',
+            description: 'Enhanced manufacturing workflows through systematic process analysis, quality assurance protocols, and lean methods across steel and machinery production facilities.',
             category: 'Production',
-            tags: ['Grid Integration', 'Power Quality', 'Forecasting'],
+            tags: ['Lean Manufacturing', 'Workflow Optimization', 'Industrial Engineering', 'QA Systems', 'Documentation'],
             image: 'wind',
             metrics: [
-                { label: 'Capacity', value: '100MW' },
-                { label: 'Uptime', value: '97.8%' },
-                { label: 'Grid Stability', value: '99.9%' }
+                { label: 'Process Eff. Increase', value: '+12%' },
+                { label: 'Delivery Acceleration', value: '+10%' },
+                { label: 'Defect Reduction', value: '-8%' }
             ],
             detailedMetrics: [
-                { label: 'Annual Generation', value: '320 GWh' },
-                { label: 'Turbines', value: '40 units' },
-                { label: 'Capacity Factor', value: '36.5%' }
+                { label: 'Methodology', value: 'Lean Methods' },
+                { label: 'Focus', value: 'Process Analysis' },
+                { label: 'Industry', value: 'Steel & Machinery' }
             ]
         },
         {
             id: '3',
-            title: 'Battery Storage System',
-            description: 'Developed control algorithms for 20MWh battery storage system, optimizing charge/discharge cycles for peak shaving.',
+            title: 'Renewable Energy Operations & Planning',
+            description: 'Supported renewable energy production planning and on-site operational optimization using lean methods and KPI-based performance tracking systems.',
             category: 'Operations',
-            tags: ['BESS', 'Control Systems', 'Peak Shaving'],
+            tags: ['Energy Operations', 'Production Planning', 'SAP', 'Performance Analytics', 'Process Coordination'],
             image: 'battery',
             metrics: [
-                { label: 'Capacity', value: '20MWh' },
-                { label: 'Cycle Life', value: '+15%' },
-                { label: 'Cost Savings', value: '$2.1M/yr' }
+                { label: 'KPI Tracking', value: 'Power BI & Excel' },
+                { label: 'Coordination', value: '3 Departments' },
+                { label: 'Workflow Opt.', value: 'Install Efficiency' }
             ],
             detailedMetrics: [
-                { label: 'Response Time', value: '< 100ms' },
-                { label: 'Round-trip Eff.', value: '92%' },
-                { label: 'Depth of Discharge', value: '85%' }
+                { label: 'Planning', value: 'Renewable Energy' },
+                { label: 'Methodology', value: 'Lean Methods' },
+                { label: 'Tracking', value: 'Performance KPIs' }
             ]
         },
         {
             id: '4',
-            title: 'Microgrid Design',
-            description: 'Architected hybrid microgrid system combining solar, wind, and storage for remote industrial facility.',
+            title: 'Quality Management & Process Standardization',
+            description: 'Implemented standardized workflows and internal auditing practices aligned with ISO 9001/14001/45001, improving quality control consistency and operational transparency.',
             category: 'Standardization',
-            tags: ['Microgrid', 'Hybrid Systems', 'Energy Management'],
+            tags: ['ISO Standards', 'Internal Audit', 'Quality Assurance', 'Process Documentation', 'Risk Management'],
             image: 'hybrid',
             metrics: [
-                { label: 'Renewable %', value: '85%' },
-                { label: 'Reliability', value: '99.5%' },
-                { label: 'Diesel Reduction', value: '78%' }
+                { label: 'Internal Auditor', value: 'ISO Certified' },
+                { label: 'Structured QA', value: 'Defect Monitoring' },
+                { label: 'Documentation', value: 'Tech Reporting' }
             ],
             detailedMetrics: [
-                { label: 'Total Capacity', value: '5MW' },
-                { label: 'Storage', value: '8MWh' },
-                { label: 'Payback Period', value: '6.8 years' }
+                { label: 'Certifier', value: 'TÜV Austria' },
+                { label: 'Standards', value: '9001/14001/45001' },
+                { label: 'Focus', value: 'Transparency' }
             ]
         }
     ];

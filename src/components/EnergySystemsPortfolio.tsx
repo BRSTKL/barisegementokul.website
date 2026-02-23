@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
+import { ProjectDetails } from './ProjectDetails';
 import { useTheme } from './theme-provider';
 
 interface Project {
@@ -81,6 +82,7 @@ const EnergySystemsPortfolio: React.FC = () => {
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { scrollYProgress } = useScroll();
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
@@ -325,6 +327,15 @@ const EnergySystemsPortfolio: React.FC = () => {
             default: return 'from-primary/20 to-primary/10';
         }
     };
+
+    if (selectedProject) {
+        return (
+            <ProjectDetails
+                projectTitle={selectedProject.title}
+                onBack={() => setSelectedProject(null)}
+            />
+        );
+    }
 
     return (
         <div className="min-h-screen bg-background text-foreground">
@@ -738,7 +749,11 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                                     </Badge>
                                                                 ))}
                                                             </div>
-                                                            <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                                            <Button
+                                                                variant="ghost"
+                                                                className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                                                                onClick={() => setSelectedProject(project)}
+                                                            >
                                                                 View Details
                                                                 <ExternalLink className="w-4 h-4 ml-2" />
                                                             </Button>

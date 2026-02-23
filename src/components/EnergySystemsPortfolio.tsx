@@ -539,7 +539,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <Zap className="w-3 h-3 mr-1" />
                             Professional Engineer
                         </Badge>
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             Powering the Future
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">

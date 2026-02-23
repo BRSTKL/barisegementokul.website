@@ -16,7 +16,11 @@ import {
     X,
     ExternalLink,
     Download,
-    FileText
+    FileText,
+    Leaf,
+    Factory,
+    Activity,
+    ClipboardCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -107,7 +111,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             id: '1',
             title: 'Solar Farm Optimization',
             description: 'Designed and implemented a 50MW solar farm with advanced tracking systems, increasing energy yield by 23%.',
-            category: 'Solar',
+            category: 'Sustainability',
             tags: ['PV Systems', 'SCADA', 'Energy Modeling'],
             image: 'solar',
             metrics: [
@@ -125,7 +129,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             id: '2',
             title: 'Wind Energy Integration',
             description: 'Led grid integration project for 100MW offshore wind farm, ensuring stable power delivery and grid compliance.',
-            category: 'Wind',
+            category: 'Production',
             tags: ['Grid Integration', 'Power Quality', 'Forecasting'],
             image: 'wind',
             metrics: [
@@ -143,7 +147,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             id: '3',
             title: 'Battery Storage System',
             description: 'Developed control algorithms for 20MWh battery storage system, optimizing charge/discharge cycles for peak shaving.',
-            category: 'Storage',
+            category: 'Operations',
             tags: ['BESS', 'Control Systems', 'Peak Shaving'],
             image: 'battery',
             metrics: [
@@ -161,7 +165,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             id: '4',
             title: 'Microgrid Design',
             description: 'Architected hybrid microgrid system combining solar, wind, and storage for remote industrial facility.',
-            category: 'Hybrid',
+            category: 'Standardization',
             tags: ['Microgrid', 'Hybrid Systems', 'Energy Management'],
             image: 'hybrid',
             metrics: [
@@ -336,20 +340,20 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const getCategoryIcon = (category: string) => {
         switch (category) {
-            case 'Solar': return <Sun className="w-4 h-4" />;
-            case 'Wind': return <Wind className="w-4 h-4" />;
-            case 'Storage': return <Battery className="w-4 h-4" />;
-            case 'Hybrid': return <Zap className="w-4 h-4" />;
+            case 'Sustainability': return <Leaf className="w-4 h-4" />;
+            case 'Production': return <Factory className="w-4 h-4" />;
+            case 'Operations': return <Activity className="w-4 h-4" />;
+            case 'Standardization': return <ClipboardCheck className="w-4 h-4" />;
             default: return <Zap className="w-4 h-4" />;
         }
     };
 
     const getCategoryGradient = (category: string) => {
         switch (category) {
-            case 'Solar': return 'from-yellow-500/20 to-orange-500/20';
-            case 'Wind': return 'from-blue-500/20 to-cyan-500/20';
-            case 'Storage': return 'from-green-500/20 to-emerald-500/20';
-            case 'Hybrid': return 'from-purple-500/20 to-pink-500/20';
+            case 'Sustainability': return 'from-yellow-500/20 to-orange-500/20';
+            case 'Production': return 'from-blue-500/20 to-cyan-500/20';
+            case 'Operations': return 'from-green-500/20 to-emerald-500/20';
+            case 'Standardization': return 'from-purple-500/20 to-pink-500/20';
             default: return 'from-primary/20 to-primary/10';
         }
     };
@@ -668,13 +672,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                         <Tabs defaultValue="all" className="mb-8">
                             <TabsList className="grid w-full max-w-md mx-auto grid-cols-5">
                                 <TabsTrigger value="all">All</TabsTrigger>
-                                <TabsTrigger value="Solar">Solar</TabsTrigger>
-                                <TabsTrigger value="Wind">Wind</TabsTrigger>
-                                <TabsTrigger value="Storage">Storage</TabsTrigger>
-                                <TabsTrigger value="Hybrid">Hybrid</TabsTrigger>
+                                <TabsTrigger value="Sustainability">Sustainability</TabsTrigger>
+                                <TabsTrigger value="Production">Production</TabsTrigger>
+                                <TabsTrigger value="Operations">Operations</TabsTrigger>
+                                <TabsTrigger value="Standardization">Standardization</TabsTrigger>
                             </TabsList>
 
-                            {['all', 'Solar', 'Wind', 'Storage', 'Hybrid'].map((category) => (
+                            {['all', 'Sustainability', 'Production', 'Operations', 'Standardization'].map((category) => (
                                 <TabsContent key={category} value={category} className="mt-8">
                                     <div className="grid md:grid-cols-2 gap-6">
                                         {projects
@@ -697,10 +701,10 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                                     transition={{ duration: 0.3 }}
                                                                 >
                                                                     <div className="w-24 h-24 text-primary/40">
-                                                                        {project.category === 'Solar' && <Sun className="w-full h-full" />}
-                                                                        {project.category === 'Wind' && <Wind className="w-full h-full" />}
-                                                                        {project.category === 'Storage' && <Battery className="w-full h-full" />}
-                                                                        {project.category === 'Hybrid' && <Zap className="w-full h-full" />}
+                                                                        {project.category === 'Sustainability' && <Leaf className="w-full h-full" />}
+                                                                        {project.category === 'Production' && <Factory className="w-full h-full" />}
+                                                                        {project.category === 'Operations' && <Activity className="w-full h-full" />}
+                                                                        {project.category === 'Standardization' && <ClipboardCheck className="w-full h-full" />}
                                                                     </div>
                                                                 </motion.div>
                                                             </div>

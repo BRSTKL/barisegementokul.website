@@ -54,6 +54,7 @@ interface Project {
         label: string;
         value: string;
     }[];
+    gallery?: { src: string; alt: string }[];
 }
 
 interface Skill {
@@ -122,6 +123,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                 { label: 'Standard', value: '9001/14001/45001' },
                 { label: 'Focus', value: 'HVAC & Heat Pumps' },
                 { label: 'Tooling', value: 'Perf. Monitoring' }
+            ],
+            gallery: [
+                { src: '/Futured Projects/Sustainability/IMG_4636.jpg', alt: 'Sustainability image 1' },
+                { src: '/Futured Projects/Sustainability/IMG_4638.jpg', alt: 'Sustainability image 2' },
+                { src: '/Futured Projects/Sustainability/IMG_4642.jpg', alt: 'Sustainability image 3' },
+                { src: '/Futured Projects/Sustainability/IMG_4644.jpg', alt: 'Sustainability image 4' },
+                { src: '/Futured Projects/Sustainability/IMG_4657.jpg', alt: 'Sustainability image 5' }
             ]
         },
         {
@@ -140,6 +148,15 @@ const EnergySystemsPortfolio: React.FC = () => {
                 { label: 'Methodology', value: 'Lean Methods' },
                 { label: 'Focus', value: 'Process Analysis' },
                 { label: 'Industry', value: 'Steel & Machinery' }
+            ],
+            gallery: [
+                { src: '/Futured Projects/Production/18.jpg', alt: 'Production image 1' },
+                { src: '/Futured Projects/Production/20160114_110252.jpg', alt: 'Production image 2' },
+                { src: '/Futured Projects/Production/20160323_132655.jpg', alt: 'Production image 3' },
+                { src: '/Futured Projects/Production/9F1B5C80-E8AA-4B35-96BC-0106C16FCCA5.JPG', alt: 'Production image 4' },
+                { src: '/Futured Projects/Production/IMG_3133.JPG', alt: 'Production image 5' },
+                { src: '/Futured Projects/Production/IMG_3642.JPG', alt: 'Production image 6' },
+                { src: '/Futured Projects/Production/IMG_6261.JPG', alt: 'Production image 7' }
             ]
         },
         {
@@ -158,6 +175,14 @@ const EnergySystemsPortfolio: React.FC = () => {
                 { label: 'Planning', value: 'Renewable Energy' },
                 { label: 'Methodology', value: 'Lean Methods' },
                 { label: 'Tracking', value: 'Performance KPIs' }
+            ],
+            gallery: [
+                { src: '/Futured Projects/Operations/IMG_4637.jpg', alt: 'Operations image 1' },
+                { src: '/Futured Projects/Operations/IMG_4640.jpg', alt: 'Operations image 2' },
+                { src: '/Futured Projects/Operations/IMG_4851.jpg', alt: 'Operations image 3' },
+                { src: '/Futured Projects/Operations/IMG_4853.jpg', alt: 'Operations image 4' },
+                { src: '/Futured Projects/Operations/IMG_4860.jpg', alt: 'Operations image 5' },
+                { src: '/Futured Projects/Operations/IMG_4861.jpg', alt: 'Operations image 6' }
             ]
         },
         {
@@ -176,6 +201,11 @@ const EnergySystemsPortfolio: React.FC = () => {
                 { label: 'Certifier', value: 'TÜV Austria' },
                 { label: 'Standards', value: '9001/14001/45001' },
                 { label: 'Focus', value: 'Transparency' }
+            ],
+            gallery: [
+                { src: '/Futured Projects/Standardization/IMG_4641.jpg', alt: 'Standardization image 1' },
+                { src: '/Futured Projects/Standardization/IMG_4859.jpg', alt: 'Standardization image 2' },
+                { src: '/Futured Projects/Standardization/IMG_4860.jpg', alt: 'Standardization image 3' }
             ]
         }
     ];
@@ -361,6 +391,7 @@ const EnergySystemsPortfolio: React.FC = () => {
         return (
             <ProjectDetails
                 projectTitle={selectedProject.title}
+                images={selectedProject.gallery}
                 onBack={() => setSelectedProject(null)}
             />
         );

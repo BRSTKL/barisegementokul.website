@@ -15,9 +15,18 @@ export const DownloadButton = ({ onDownload, label = "Resume", className = "" }:
         if (isDownloading) return;
 
         setIsDownloading(true);
+
+        // Create a temporary link element to trigger the download
+        const link = document.createElement('a');
+        link.href = '/resume/BarisEgemenTokul_CV.docx';
+        link.download = 'BarisEgemenTokul_CV.docx';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
         onDownload?.();
 
-        // Simulate download
+        // Simulate download animation duration
         setTimeout(() => {
             setIsDownloading(false);
         }, 3500);

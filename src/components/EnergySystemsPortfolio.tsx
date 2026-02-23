@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
+import { DownloadButton } from '@/components/ui/download-animation';
 import { ProjectDetails } from './ProjectDetails';
 import { useTheme } from './theme-provider';
 
@@ -373,10 +374,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                             >
                                 {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                             </Button>
-                            <Button size="sm" className="ml-2">
-                                <Download className="w-4 h-4 mr-2" />
-                                Resume
-                            </Button>
+                            <DownloadButton className="ml-2" />
                         </div>
 
                         {/* Mobile Menu Button */}
@@ -417,10 +415,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                         {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                                     </Button>
                                 </div>
-                                <Button size="sm" className="w-full mt-2">
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Resume
-                                </Button>
+                                <DownloadButton className="mt-4" />
                             </motion.div>
                         )}
                     </AnimatePresence>

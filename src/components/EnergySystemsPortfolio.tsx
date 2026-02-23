@@ -182,39 +182,49 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const experience: Experience[] = [
         {
-            title: 'Senior Energy Systems Engineer',
-            company: 'GreenTech Solutions',
-            period: '2020 - Present',
-            year: '2020',
-            description: 'Leading renewable energy integration projects and grid modernization initiatives.',
+            title: 'Production Engineering Trainee',
+            company: 'Emas Machine Industry',
+            period: 'Apr 2024 - May 2024',
+            year: '2024',
+            description: 'Supported manufacturing process optimization through technical documentation and workflow analysis.',
             achievements: [
-                'Designed 200MW+ of renewable energy systems',
-                'Reduced project costs by 18% through optimization',
-                'Led team of 8 engineers on major grid projects'
+                'Gained hands-on experience in quality control procedures',
+                'Applied industrial engineering practices'
             ]
         },
         {
-            title: 'Power Systems Engineer',
-            company: 'Renewable Energy Corp',
-            period: '2017 - 2020',
-            year: '2017',
-            description: 'Focused on solar and wind farm development, grid studies, and energy storage integration.',
+            title: 'Long-Term Project Engineer Trainee',
+            company: 'Propenta Steel Industry',
+            period: 'May 2023 - Dec 2023',
+            year: '2023',
+            description: 'Coordinated cross-functional teams across 3 departments, improving project delivery timelines by 10%.',
             achievements: [
-                'Completed 15+ utility-scale solar projects',
-                'Developed proprietary energy forecasting models',
-                'Achieved 99.2% average system uptime'
+                'Improved process efficiency by 12% through systematic analysis',
+                'Reduced manufacturing defects by 8% with QA protocols',
+                'Enhanced communication and standardized workflows'
             ]
         },
         {
-            title: 'Junior Engineer',
-            company: 'Power Grid Innovations',
-            period: '2015 - 2017',
-            year: '2015',
-            description: 'Supported transmission planning and renewable energy interconnection studies.',
+            title: 'Long-Term Sales Engineer Trainee',
+            company: 'Danfoss Turkey',
+            period: 'Oct 2022 - Apr 2023',
+            year: '2022',
+            description: 'Delivered 10+ technical presentations on HVAC systems, heat pump technology, and energy efficiency solutions.',
             achievements: [
-                'Conducted power flow and stability analysis',
-                'Assisted in 50+ interconnection studies',
-                'Developed automated reporting tools'
+                'Supported heat pump system selection and sizing calculations',
+                'Provided technical support for HVAC installations',
+                'Gained in-depth knowledge of building automation technologies'
+            ]
+        },
+        {
+            title: 'Production Planning Trainee',
+            company: 'Dogus Energy',
+            period: 'Aug 2022 - Sep 2022',
+            year: '2022',
+            description: 'Optimized operational workflows using lean methods and process improvement techniques.',
+            achievements: [
+                'Supported energy sector operations',
+                'Focused on efficiency and quality management'
             ]
         }
     ];

@@ -205,7 +205,8 @@ const EnergySystemsPortfolio: React.FC = () => {
             gallery: [
                 { src: '/Futured Projects/Standardization/IMG_4641.jpg', alt: 'Standardization image 1' },
                 { src: '/Futured Projects/Standardization/IMG_4859.jpg', alt: 'Standardization image 2' },
-                { src: '/Futured Projects/Standardization/IMG_4860.jpg', alt: 'Standardization image 3' }
+                { src: '/Futured Projects/Standardization/IMG_4860.jpg', alt: 'Standardization image 3' },
+                { src: '/Futured Projects/Standardization/IMG_3497.JPG', alt: 'Standardization image 4' }
             ]
         }
     ];

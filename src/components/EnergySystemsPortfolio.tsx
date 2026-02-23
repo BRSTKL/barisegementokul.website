@@ -61,12 +61,11 @@ interface Experience {
     year: string;
 }
 
-interface Testimonial {
-    name: string;
-    role: string;
-    company: string;
-    quote: string;
-    avatar: string;
+interface Education {
+    degree: string;
+    institution: string;
+    location: string;
+    period: string;
 }
 
 interface Publication {
@@ -92,7 +91,7 @@ const EnergySystemsPortfolio: React.FC = () => {
         { id: 'projects', tile: 'Projects' },
         { id: 'publications', tile: 'Publications' },
         { id: 'experience', tile: 'Experience' },
-        { id: 'testimonials', tile: 'Testimonials' },
+        { id: 'education', tile: 'Education' },
         { id: 'contact', tile: 'Contact' }
     ];
 
@@ -229,27 +228,24 @@ const EnergySystemsPortfolio: React.FC = () => {
         }
     ];
 
-    const testimonials: Testimonial[] = [
+    const education: Education[] = [
         {
-            name: 'Dr. Sarah Chen',
-            role: 'Director of Engineering',
-            company: 'GreenTech Solutions',
-            quote: 'An exceptional engineer who consistently delivers innovative solutions to complex energy challenges. Their work on our solar farm optimization project exceeded all expectations.',
-            avatar: 'SC'
+            degree: 'MSc in Engineering Management',
+            institution: 'Berlin School of Business and Innovation',
+            location: 'Berlin, Germany',
+            period: '2025 - Present'
         },
         {
-            name: 'Michael Rodriguez',
-            role: 'VP of Operations',
-            company: 'Renewable Energy Corp',
-            quote: 'Outstanding technical expertise combined with excellent project management skills. Their grid integration work has been instrumental in our company\'s success.',
-            avatar: 'MR'
+            degree: 'BSc in Energy Systems Engineering',
+            institution: 'Bahcesehir University',
+            location: 'Istanbul, Turkey',
+            period: '2018 - 2024'
         },
         {
-            name: 'Jennifer Walsh',
-            role: 'Chief Technology Officer',
-            company: 'Power Grid Innovations',
-            quote: 'A brilliant problem-solver with deep knowledge of power systems. Their contributions to our battery storage algorithms have revolutionized our approach to energy management.',
-            avatar: 'JW'
+            degree: 'English Language Program',
+            institution: 'Bay Atlantic University',
+            location: 'Washington D.C., USA',
+            period: '2018 - 2019'
         }
     ];
 
@@ -293,7 +289,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['home', 'about', 'projects', 'publications', 'experience', 'testimonials', 'contact'];
+            const sections = ['home', 'about', 'projects', 'publications', 'experience', 'education', 'contact'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -395,7 +391,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 exit={{ opacity: 0, height: 0 }}
                                 className="md:hidden mt-4 pb-4"
                             >
-                                {['home', 'about', 'projects', 'publications', 'experience', 'testimonials', 'contact'].map((section) => (
+                                {['home', 'about', 'projects', 'publications', 'experience', 'education', 'contact'].map((section) => (
                                     <button
                                         key={section}
                                         onClick={() => scrollToSection(section)}
@@ -885,8 +881,8 @@ const EnergySystemsPortfolio: React.FC = () => {
                 </div>
             </section>
 
-            {/* Testimonials Section */}
-            <section id="testimonials" className="py-20 bg-muted/30">
+            {/* Education Section */}
+            <section id="education" className="py-20 bg-muted/30">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -895,34 +891,36 @@ const EnergySystemsPortfolio: React.FC = () => {
                         transition={{ duration: 0.6 }}
                     >
                         <div className="text-center mb-12">
-                            <Badge className="mb-4" variant="outline">Testimonials</Badge>
-                            <h2 className="text-4xl font-bold mb-4">What Colleagues Say</h2>
+                            <Badge className="mb-4" variant="outline">Education</Badge>
+                            <h2 className="text-4xl font-bold mb-4">Academic Background</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
-                                Recommendations from industry leaders and collaborators
+                                Degrees and programs that shaped my engineering foundation
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                            {testimonials.map((testimonial, index) => (
+                        <div className="max-w-4xl mx-auto space-y-4">
+                            {education.map((item, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <Card className="h-full">
+                                    <Card className="hover:shadow-md transition-shadow">
                                         <CardContent className="pt-6">
-                                            <Quote className="w-8 h-8 text-primary mb-4" />
-                                            <p className="text-muted-foreground mb-6 italic">{testimonial.quote}</p>
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-semibold text-primary">
-                                                    {testimonial.avatar}
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                                    <BookOpen className="w-6 h-6 text-primary" />
                                                 </div>
-                                                <div>
-                                                    <div className="font-semibold">{testimonial.name}</div>
-                                                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                                                    <div className="text-sm text-muted-foreground">{testimonial.company}</div>
+                                                <div className="flex-1">
+                                                    <h3 className="font-semibold mb-2">{item.degree}</h3>
+                                                    <p className="text-sm text-muted-foreground mb-2">
+                                                        {item.institution} • {item.location}
+                                                    </p>
+                                                    <p className="text-sm font-medium text-primary">
+                                                        {item.period}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </CardContent>

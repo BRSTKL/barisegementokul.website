@@ -68,7 +68,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                 </Button>
             </div>
 
-            <div className="absolute top-[12vh] left-0 w-full flex justify-center items-center flex-col gap-6 z-20 pointer-events-none drop-shadow-2xl">
+            <div className="relative flex h-[100vh] items-center justify-center flex-col gap-6">
                 {/* Radial spotlight */}
                 <div
                     aria-hidden="true"
@@ -78,13 +78,13 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                         'blur-[30px]',
                     )}
                 />
-                <h2 className="text-xl md:text-3xl font-medium text-white/80 uppercase tracking-widest drop-shadow-lg">
+                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground uppercase tracking-widest">
                     Project Study
                 </h2>
-                <h1 className="text-center text-5xl md:text-8xl font-bold max-w-5xl px-4 z-10 text-white drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                <h1 className="text-center text-5xl md:text-7xl font-bold max-w-4xl px-4 z-10 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
                     {projectTitle}
                 </h1>
-                <p className="text-white/60 animate-pulse mt-8 text-lg font-light tracking-wide">
+                <p className="text-muted-foreground animate-pulse mt-8">
                     Scroll Down for Details
                 </p>
             </div>

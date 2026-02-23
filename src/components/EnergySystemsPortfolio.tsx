@@ -26,6 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
 import { DownloadButton } from '@/components/ui/download-animation';
+import { SkyToggle } from '@/components/ui/sky-toggle';
 import { ProjectDetails } from './ProjectDetails';
 
 interface Project {
@@ -363,6 +364,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                             />
 
                             <DownloadButton className="ml-2" />
+                            <SkyToggle />
                         </div>
 
                         {/* Mobile Menu Button */}
@@ -392,7 +394,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                                         {section}
                                     </button>
                                 ))}
-                                <DownloadButton className="mt-4" />
+                                <div className="flex items-center justify-between mt-4 mb-2">
+                                    <span className="text-sm font-medium">Theme</span>
+                                    <div className="flex items-center">
+                                        <DownloadButton />
+                                        <SkyToggle />
+                                    </div>
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>

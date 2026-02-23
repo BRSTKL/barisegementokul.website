@@ -17,8 +17,7 @@ import {
     ExternalLink,
     Download,
     Quote,
-    FileText,
-    Moon
+    FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,8 +26,8 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
 import { DownloadButton } from '@/components/ui/download-animation';
+import { SkyToggle } from '@/components/ui/sky-toggle';
 import { ProjectDetails } from './ProjectDetails';
-import { useTheme } from './theme-provider';
 
 interface Project {
     id: string;
@@ -79,7 +78,6 @@ interface Publication {
 }
 
 const EnergySystemsPortfolio: React.FC = () => {
-    const { theme, setTheme } = useTheme();
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -365,15 +363,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 onTabChange={scrollToSection}
                             />
 
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                                className="ml-2"
-                                aria-label="Toggle theme"
-                            >
-                                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                            </Button>
+                            <SkyToggle />
                             <DownloadButton className="ml-2" />
                         </div>
 
@@ -406,14 +396,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 ))}
                                 <div className="flex items-center justify-between mt-4 mb-2">
                                     <span className="text-sm font-medium">Theme</span>
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                                        aria-label="Toggle theme"
-                                    >
-                                        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                                    </Button>
+                                    <SkyToggle />
                                 </div>
                                 <DownloadButton className="mt-4" />
                             </motion.div>

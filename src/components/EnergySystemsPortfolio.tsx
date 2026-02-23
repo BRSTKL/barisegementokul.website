@@ -332,6 +332,13 @@ const EnergySystemsPortfolio: React.FC = () => {
             year: '2024',
             authors: 'Barış Egemen Tokul',
             link: '/publications/Relationship Between Electricity Market Clearing Price (PTF) and Market.pdf'
+        },
+        {
+            title: 'PVsyst Project Berlinovo_60.VC0 Report',
+            journal: 'Technical Report',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Pvsyst Project Berlinovo_60.VC0-Report.pdf'
         }
     ];
 

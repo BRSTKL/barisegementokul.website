@@ -68,7 +68,7 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                 </Button>
             </div>
 
-            <div className="relative flex h-[40vh] items-center justify-end flex-col gap-6 pb-8">
+            <div className="relative flex h-[40vh] items-center justify-end flex-col gap-6 pb-8 z-10">
                 {/* Radial spotlight */}
                 <div
                     aria-hidden="true"
@@ -88,7 +88,9 @@ export function ProjectDetails({ projectTitle, onBack }: ProjectDetailsProps) {
                     Scroll Down for Details
                 </p>
             </div>
-            <ZoomParallax images={images} />
+            <div className="-mt-32 relative z-0">
+                <ZoomParallax images={images} />
+            </div>
             <div className="h-[50vh] flex items-center justify-center">
                 <Button size="lg" onClick={onBack}>
                     Finish Review

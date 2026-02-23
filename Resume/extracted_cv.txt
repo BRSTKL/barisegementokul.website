@@ -1,0 +1,76 @@
+﻿BARIS EGEMEN TOKUL
+Bergaustrasse 60, 12437 Berlin, Germany
++49 015 292 613 835 | barisegementokul@gmail.com
+LinkedIn: linkedin.com/in/barisegementokul | Portfolio Available
+PROFESSIONAL SUMMARY
+Certified SolarEdge Expert Installer with comprehensive knowledge of solar PV systems, heat pump technology, and HVAC building systems (Gebäudetechnik). Hands-on experience in technical sales, system design, and process optimization gained through roles at Danfoss and energy sector companies. Strong background in quality management (ISO 9001/14001/45001), technical documentation, and cross-functional project coordination. Proficient in using data analytics tools (Power BI, Excel) for performance tracking and system optimization. Currently pursuing MSc in Engineering Management in Berlin, seeking working student positions in solar PV installation, heat pump systems, or renewable energy technical support.
+TECHNICAL SKILLS
+Solar PV Systems: 
+SolarEdge Inverters (Expert Installer Certified), PV System Design, Module-Level Monitoring, System Commissioning, Inbetriebnahme, Performance Analysis, Safety Requirements
+Heat Pump & HVAC Technology: 
+Heat Pump Systems, Danfoss Solutions, HVAC Design, HLK Systems, Gebäudetechnik, Energy Efficiency Optimization, Building Automation
+Project & Quality Management: 
+Cross-Functional Coordination, Process Optimization, ISO 9001/14001/45001 (TÜV Austria Certified), Lean Methods, Technical Documentation, Installation Planning
+Data & Analytics: 
+Power BI, Excel (VBA, Pivot Tables), Python (Pandas, NumPy), Performance Reporting, KPI Tracking
+Software & Tools: 
+SAP, Office 365 (Teams, SharePoint), Technical Presentation Tools
+PROFESSIONAL EXPERIENCE
+Production Engineering Trainee | 
+Emas Machine Industry
+Turkey | Apr 2024 - May 2024
+Supported manufacturing process optimization through technical documentation and workflow analysis
+Gained hands-on experience in quality control procedures and industrial engineering practices
+Long-Term Project Engineer Trainee | 
+Propenta Steel Industry
+Manisa, Turkey | 
+May
+ 2023 - Dec 2023
+Coordinated cross-functional teams across 3 departments, improving project delivery timelines by 10% through enhanced communication and standardized workflows
+Improved process efficiency by 12% through systematic analysis and optimization of manufacturing workflows, reducing waste and improving quality control
+Reduced manufacturing defects by 8% through implementation of quality assurance protocols and performance monitoring systems
+Long-Term Sales Engineer Trainee | 
+Danfoss Turkey
+Istanbul, Turkey | Oct 2022 - Apr 2023
+Delivered 10+ technical presentations on HVAC systems, heat pump technology, and energy efficiency solutions to clients, installers, and engineering teams
+Gained in-depth knowledge of Danfoss heat pump products, system specifications, and building automation technologies applicable to modern Gebäudetechnik projects
+Collaborated with sales and engineering departments to support heat pump system selection, sizing calculations, and energy performance optimization
+Provided technical support for HVAC and heat pump installation projects, ensuring compliance with energy efficiency standards
+Production Planning and Optimization Trainee | 
+Dogus Energy
+Istanbul, Turkey | Aug 2022 - Sep 2022
+Optimized operational workflows using lean methods and process improvement techniques applicable to on-site renewable energy installation efficiency
+Supported energy sector operations with focus on efficiency and quality management
+TECHNICAL PROJECTS
+Pressure Vessel Design & Manufacturing Analysis 
+(2023 - 2024)
+Applied engineering principles to pressure vessel and conveyor system design projects
+Developed technical documentation and process optimization recommendations
+Gained hands-on experience in quality control and manufacturing standards
+Energy Market Analysis & System Performance Study 
+(Graduation Project, 2022 - 2023)
+Analyzed electricity market clearing prices (PTF) and energy company performance with 85% correlation accuracy
+Developed data analysis pipelines for energy system performance evaluation
+Created Power BI dashboards for energy market monitoring and visualization
+EDUCATION
+MSc in Engineering Management | 
+Berlin School of Business and Innovation
+Berlin, Germany | 2025 - Present
+BSc in Energy Systems Engineering | 
+Bahcesehir University
+Istanbul, Turkey | 2018 - 2024
+English Language Program | 
+Bay Atlantic University
+Washington D.C., USA | 2018 - 2019
+CERTIFICATIONS
+SolarEdge Expert Installer Certification - Inverter configuration, system design fundamentals, module-level monitoring, safety best practices (Nov 2025)
+SolarEdge Fundamentals Certificate - Core PV design principles, inverter basics, safety requirements, system operation (Nov 2025)
+ISO 14001, 9001, 45001 Internal Auditor - Quality management, environmental systems, safety (TÜV Austria, Feb 2025)
+Google Data Analytics Professional Certificate - Data-driven decision frameworks, analytical thinking (Oct 2025)
+LANGUAGES
+Turkish: Native (C2)
+English: Upper-Intermediate (
+C1
+)
+German: Intermediate (B1, B2 in progress)
+

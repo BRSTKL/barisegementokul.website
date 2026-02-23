@@ -27,6 +27,14 @@ import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs
 import { DownloadButton } from '@/components/ui/download-animation';
 import { SkyToggle } from '@/components/ui/sky-toggle';
 import { ProjectDetails } from './ProjectDetails';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 interface Project {
     id: string;
@@ -250,32 +258,46 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const publications: Publication[] = [
         {
-            title: 'Advanced Control Strategies for Grid-Connected Battery Energy Storage Systems',
-            journal: 'IEEE Transactions on Power Systems',
-            year: '2023',
-            authors: 'J. Smith, et al.',
-            link: '#'
+            title: 'Applying Numerical Methods to Solve Management-Oriented Engineering Problems',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Applying Numerical Methods to SolveManagement-Oriented Engineering Problems.pdf'
         },
         {
-            title: 'Optimization of Hybrid Renewable Energy Microgrids Using Machine Learning',
-            journal: 'Renewable Energy Journal',
-            year: '2022',
-            authors: 'J. Smith, M. Johnson',
-            link: '#'
+            title: 'From Strategy to Skills Building Competitive Edge through Digital Transformation',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/From Strategy to Skills Building CompetitiveEdge through Digital Transformation.pdf'
         },
         {
-            title: 'Grid Integration Challenges and Solutions for Large-Scale Wind Farms',
-            journal: 'Energy Conversion and Management',
-            year: '2021',
-            authors: 'J. Smith, S. Chen, R. Kumar',
-            link: '#'
+            title: 'Holistic Production Planning and Control',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Holistic Production Planning andControl.pdf'
         },
         {
-            title: 'Solar Farm Performance Analysis Using Advanced Monitoring Systems',
-            journal: 'Solar Energy',
-            year: '2020',
-            authors: 'J. Smith',
-            link: '#'
+            title: 'Innovation as a factor stimulating economic growth',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Innovation as a factor stimulating economicgrowth.pdf'
+        },
+        {
+            title: 'Promoting Employee Engagement and Productivity',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Promoting Employee Engagement and Productivity.pdf'
+        },
+        {
+            title: 'Relationship Between Electricity Market Clearing Price (PTF) and Market',
+            journal: 'Academic Paper',
+            year: '2024',
+            authors: 'Barış Egemen Tokul',
+            link: '/publications/Relationship Between Electricity Market Clearing Price (PTF) and Market.pdf'
         }
     ];
 
@@ -794,12 +816,26 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                     <p className="text-sm text-muted-foreground mb-3">
                                                         Authors: {pub.authors}
                                                     </p>
-                                                    <Button size="sm" variant="outline" asChild>
-                                                        <a href={pub.link} target="_blank" rel="noopener noreferrer">
-                                                            Read Paper
-                                                            <ExternalLink className="w-3 h-3 ml-2" />
-                                                        </a>
-                                                    </Button>
+                                                    <Dialog>
+                                                        <DialogTrigger asChild>
+                                                            <Button size="sm" variant="outline">
+                                                                Read Paper
+                                                                <ExternalLink className="w-3 h-3 ml-2" />
+                                                            </Button>
+                                                        </DialogTrigger>
+                                                        <DialogContent className="max-w-4xl w-[90vw] h-[90vh]">
+                                                            <DialogHeader>
+                                                                <DialogTitle>{pub.title}</DialogTitle>
+                                                            </DialogHeader>
+                                                            <div className="flex-1 w-full h-full min-h-[70vh] mt-4">
+                                                                <iframe
+                                                                    src={`${pub.link}#toolbar=0`}
+                                                                    className="w-full h-full rounded-md border"
+                                                                    title={pub.title}
+                                                                />
+                                                            </div>
+                                                        </DialogContent>
+                                                    </Dialog>
                                                 </div>
                                             </div>
                                         </CardContent>

@@ -4,7 +4,6 @@ import {
     Zap,
     Wind,
     Sun,
-    Battery,
     TrendingUp,
     Award,
     BookOpen,

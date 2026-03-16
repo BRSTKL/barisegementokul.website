@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
     Zap,
@@ -17,6 +17,7 @@ import {
     Download,
     FileText,
     Leaf,
+    Package,
     Factory,
     Activity,
     ClipboardCheck
@@ -29,8 +30,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs';
 import { DownloadButton } from '@/components/ui/download-animation';
 import { SkyToggle } from '@/components/ui/sky-toggle';
+import { PROJECTS, type Project } from '@/data/projects';
 import { ProjectDetails } from './ProjectDetails';
-import { DataLabProjectPage } from './DataLabProjectPage';
+import { ProjectStoryPage } from './ProjectStoryPage';
+import { OrderTrackerDashboard } from './order-tracker/OrderTrackerDashboard';
+import { StoryViewer, type Story } from '@/components/ui/story-viewer';
 import {
     Dialog,
     DialogContent,
@@ -39,25 +43,9 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 
-
-interface Project {
-    id: string;
-    title: string;
-    description: string;
-    category: string;
-    projectType?: 'gallery' | 'interactive-demo';
-    tags: string[];
-    image: string;
-    metrics?: {
-        label: string;
-        value: string;
-    }[];
-    detailedMetrics?: {
-        label: string;
-        value: string;
-    }[];
-    gallery?: { src: string; alt: string }[];
-}
+const ProjectPortfolioDataDemo = React.lazy(() =>
+    import('./ProjectPortfolioDataDemo').then((module) => ({ default: module.ProjectPortfolioDataDemo }))
+);
 
 interface Skill {
     name: string;
@@ -72,6 +60,13 @@ interface Experience {
     description: string;
     achievements: string[];
     year: string;
+    storySources?: ExperienceStorySource[];
+}
+
+interface ExperienceStorySource {
+    projectId: string;
+    indices?: number[];
+    title?: string;
 }
 
 interface Education {
@@ -92,7 +87,6 @@ interface Publication {
 const NAV_ITEMS = [
     { id: 'home', tile: 'Home' },
     { id: 'about', tile: 'About' },
-    { id: 'demo', tile: 'Data Lab' },
     { id: 'projects', tile: 'Projects' },
     { id: 'publications', tile: 'Publications' },
     { id: 'experience', tile: 'Experience' },
@@ -102,16 +96,52 @@ const NAV_ITEMS = [
 
 const SECTION_IDS = NAV_ITEMS.map((item) => item.id);
 
+const STORY_CATEGORY_AVATARS: Record<string, { primary: string; secondary: string }> = {
+    Sustainability: { primary: '#f59e0b', secondary: '#fb7185' },
+    Production: { primary: '#0ea5e9', secondary: '#22d3ee' },
+    Operations: { primary: '#10b981', secondary: '#14b8a6' },
+    Standardization: { primary: '#d946ef', secondary: '#8b5cf6' }
+};
+
+const buildStoryAvatar = (label: string, category: string) => {
+    const palette = STORY_CATEGORY_AVATARS[category] ?? STORY_CATEGORY_AVATARS.Sustainability;
+    const initials = label
+        .split(' ')
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${palette.primary}" />
+            <stop offset="100%" stop-color="${palette.secondary}" />
+          </linearGradient>
+        </defs>
+        <rect width="96" height="96" rx="48" fill="url(#g)" />
+        <text x="50%" y="56%" text-anchor="middle" font-size="32" font-family="Arial, sans-serif" font-weight="700" fill="white">
+          ${initials}
+        </text>
+      </svg>
+    `;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+
 const EnergySystemsPortfolio: React.FC = () => {
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [activeDemoId, setActiveDemoId] = useState<string | null>(null);
+    const liveDemoRef = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll();
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-    const projects: Project[] = [
+    /* const projects: Project[] = [
         {
             id: 'data-lab',
             title: 'Construction Portfolio Data Lab',
@@ -233,8 +263,47 @@ const EnergySystemsPortfolio: React.FC = () => {
                 { src: '/Futured Projects/Standardization/IMG_3497.JPG', alt: 'Standardization image 4' }
             ]
         }
-    ];
-    const dataLabProject = projects.find((project) => project.id === 'data-lab') ?? null;
+    ]; */
+    const projects = PROJECTS;
+    const featuredProjects = projects.filter((project) => project.projectType !== 'story-gallery');
+    const projectCategories = ['all', ...Array.from(new Set(featuredProjects.map((project) => project.category)))];
+    const activeLiveDemoProject = projects.find((project) => project.id === activeDemoId && project.hasLiveDemo) ?? null;
+    const storyProjectsById = React.useMemo(
+        () => new Map(projects.filter((project) => project.projectType === 'story-gallery').map((project) => [project.id, project])),
+        [projects]
+    );
+
+    const buildExperienceStoryBundle = React.useCallback((source: ExperienceStorySource, offset: number) => {
+        const project = storyProjectsById.get(source.projectId);
+
+        if (!project) {
+            return null;
+        }
+
+        const galleryItems = source.indices
+            ? source.indices
+                .map((index) => project.gallery?.[index])
+                .filter((item): item is NonNullable<typeof item> => Boolean(item))
+            : (project.gallery ?? []);
+
+        if (!galleryItems.length) {
+            return null;
+        }
+
+        return {
+            avatar: buildStoryAvatar(source.title ?? project.title, project.category),
+            timestamp: new Date(Date.now() - (offset + 1) * 1000 * 60 * 75).toISOString(),
+            stories: galleryItems.map((image, imageIndex) => ({
+                id: `${project.id}-story-${offset}-${imageIndex}`,
+                type: 'image' as const,
+                src: image.src,
+                label: image.label,
+                caption: image.caption,
+                duration: 4600
+            })) satisfies Story[],
+            title: source.title ?? project.title
+        };
+    }, [storyProjectsById]);
 
     const skills: Skill[] = [
         { name: 'Solar PV Systems', level: 95, icon: <Sun className="w-5 h-5" /> },
@@ -251,6 +320,10 @@ const EnergySystemsPortfolio: React.FC = () => {
             company: 'Emas Machine Industry',
             period: 'Apr 2024 - May 2024',
             year: '2024',
+            storySources: [
+                { projectId: '3', title: 'Operations & Planning' },
+                { projectId: '4', indices: [0, 1, 2], title: 'Quality Management' }
+            ],
             description: 'Supported manufacturing process optimization through technical documentation and workflow analysis.',
             achievements: [
                 'Gained hands-on experience in quality control procedures',
@@ -262,6 +335,10 @@ const EnergySystemsPortfolio: React.FC = () => {
             company: 'Propenta Steel Industry',
             period: 'May 2023 - Dec 2023',
             year: '2023',
+            storySources: [
+                { projectId: '2', title: 'Manufacturing Process' },
+                { projectId: '4', indices: [3], title: 'Standardization Result' }
+            ],
             description: 'Coordinated cross-functional teams across 3 departments, improving project delivery timelines by 10%.',
             achievements: [
                 'Improved process efficiency by 12% through systematic analysis',
@@ -274,6 +351,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             company: 'Danfoss Turkey',
             period: 'Oct 2022 - Apr 2023',
             year: '2022',
+            storySources: [{ projectId: '1', title: 'Energy Efficiency' }],
             description: 'Delivered 10+ technical presentations on HVAC systems, heat pump technology, and energy efficiency solutions.',
             achievements: [
                 'Supported heat pump system selection and sizing calculations',
@@ -391,6 +469,21 @@ const EnergySystemsPortfolio: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        if (!activeDemoId) {
+            return;
+        }
+
+        const timeoutId = window.setTimeout(() => {
+            liveDemoRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 120);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [activeDemoId]);
+
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -399,8 +492,27 @@ const EnergySystemsPortfolio: React.FC = () => {
         }
     };
 
+    const openProjectDemo = (projectId: string) => {
+        setActiveDemoId(projectId);
+    };
+
+    const closeProjectDemo = () => {
+        setActiveDemoId(null);
+    };
+
+    const handleProjectCardClick = (project: Project) => {
+        if (project.hasLiveDemo) {
+            openProjectDemo(project.id);
+            return;
+        }
+
+        setActiveDemoId(null);
+        setSelectedProject(project);
+    };
+
     const getCategoryIcon = (category: string) => {
         switch (category) {
+            case 'Industry Tool': return <Package className="w-4 h-4" />;
             case 'Data Intelligence': return <TrendingUp className="w-4 h-4" />;
             case 'Sustainability': return <Leaf className="w-4 h-4" />;
             case 'Production': return <Factory className="w-4 h-4" />;
@@ -412,6 +524,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const getCategoryGradient = (category: string) => {
         switch (category) {
+            case 'Industry Tool': return 'from-sky-500/20 via-cyan-500/10 to-emerald-500/20';
             case 'Data Intelligence': return 'from-sky-500/20 to-indigo-500/20';
             case 'Sustainability': return 'from-yellow-500/20 to-orange-500/20';
             case 'Production': return 'from-blue-500/20 to-cyan-500/20';
@@ -422,13 +535,10 @@ const EnergySystemsPortfolio: React.FC = () => {
     };
 
     if (selectedProject) {
-        if (selectedProject.projectType === 'interactive-demo') {
+        if (selectedProject.projectType === 'story-gallery') {
             return (
-                <DataLabProjectPage
-                    title={selectedProject.title}
-                    description={selectedProject.description}
-                    tags={selectedProject.tags}
-                    metrics={selectedProject.metrics}
+                <ProjectStoryPage
+                    project={selectedProject}
                     onBack={() => setSelectedProject(null)}
                 />
             );
@@ -728,67 +838,6 @@ const EnergySystemsPortfolio: React.FC = () => {
                 </div>
             </section>
 
-            <section id="demo" className="py-20 bg-gradient-to-b from-background via-background to-muted/20">
-                <div className="container mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className="text-center mb-12">
-                            <Badge className="mb-4" variant="outline">Demo Application</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Construction Portfolio Data Lab</h2>
-                            <p className="text-muted-foreground max-w-3xl mx-auto">
-                                The Data Lab now lives as a standalone interactive project page. Use this teaser section
-                                to jump into the live demo from navigation or discover it in the featured projects grid.
-                            </p>
-                        </div>
-
-                        <Card className="border-primary/20 bg-gradient-to-br from-background via-background to-primary/10">
-                            <CardContent className="pt-8">
-                                <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-                                    <div className="space-y-5">
-                                        <div className="flex flex-wrap gap-2">
-                                            <Badge variant="secondary">Interactive Demo</Badge>
-                                            <Badge variant="outline">Secure Gemini Proxy</Badge>
-                                        </div>
-                                        <h3 className="text-3xl font-bold">Open the full project page and test the app there</h3>
-                                        <p className="text-muted-foreground">
-                                            The dedicated project page includes file upload, QA findings, mapping audit,
-                                            exports, and LLM interpretation in one standalone case study.
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {dataLabProject?.tags.slice(0, 6).map((tag) => (
-                                                <Badge key={tag} variant="outline">{tag}</Badge>
-                                            ))}
-                                        </div>
-                                        <div className="flex flex-wrap gap-3">
-                                            <Button onClick={() => dataLabProject && setSelectedProject(dataLabProject)}>
-                                                Open Project Page
-                                                <ExternalLink className="w-4 h-4 ml-2" />
-                                            </Button>
-                                            <Button variant="outline" onClick={() => scrollToSection('projects')}>
-                                                View in Projects
-                                            </Button>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                                        {dataLabProject?.metrics?.map((metric) => (
-                                            <div key={metric.label} className="rounded-2xl border border-border/60 bg-background/70 p-5">
-                                                <div className="text-2xl font-bold text-primary">{metric.value}</div>
-                                                <div className="mt-2 text-sm text-muted-foreground">{metric.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* Projects Section with Hover Effects */}
             <section id="projects" className="py-20">
                 <div className="container mx-auto px-4">
@@ -807,114 +856,207 @@ const EnergySystemsPortfolio: React.FC = () => {
                         </div>
 
                         <Tabs defaultValue="all" className="mb-12 flex flex-col items-center">
-                            <TabsList className="flex flex-wrap h-auto w-fit justify-center gap-2 p-1">
-                                <TabsTrigger value="all">All</TabsTrigger>
-                                <TabsTrigger value="Data Intelligence">Data Intelligence</TabsTrigger>
-                                <TabsTrigger value="Sustainability">Sustainability</TabsTrigger>
-                                <TabsTrigger value="Production">Production</TabsTrigger>
-                                <TabsTrigger value="Operations">Operations</TabsTrigger>
-                                <TabsTrigger value="Standardization">Standardization</TabsTrigger>
+                            <TabsList className="flex h-auto w-fit flex-wrap justify-center gap-2 p-1">
+                                {projectCategories.map((category) => (
+                                    <TabsTrigger key={category} value={category}>
+                                        {category === 'all' ? 'All' : category}
+                                    </TabsTrigger>
+                                ))}
                             </TabsList>
 
-                            {['all', 'Data Intelligence', 'Sustainability', 'Production', 'Operations', 'Standardization'].map((category) => (
-                                <TabsContent key={category} value={category} className="mt-8">
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        {projects
-                                            .filter(p => category === 'all' || p.category === category)
-                                            .map((project, index) => (
-                                                <motion.div
-                                                    key={project.id}
-                                                    initial={{ opacity: 0, y: 20 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ delay: index * 0.1 }}
-                                                    onMouseEnter={() => setHoveredProject(project.id)}
-                                                    onMouseLeave={() => setHoveredProject(null)}
-                                                >
-                                                    <Card className="h-full hover:shadow-lg transition-all duration-300 overflow-hidden group">
-                                                        <div className={`h-48 bg-gradient-to-br ${getCategoryGradient(project.category)} relative overflow-hidden`}>
-                                                            <div className="absolute inset-0 flex items-center justify-center">
-                                                                <motion.div
-                                                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                                                    transition={{ duration: 0.3 }}
-                                                                >
-                                                                    <div className="w-24 h-24 text-primary/40">
-                                                                        {project.category === 'Data Intelligence' && <TrendingUp className="w-full h-full" />}
-                                                                        {project.category === 'Sustainability' && <Leaf className="w-full h-full" />}
-                                                                        {project.category === 'Production' && <Factory className="w-full h-full" />}
-                                                                        {project.category === 'Operations' && <Activity className="w-full h-full" />}
-                                                                        {project.category === 'Standardization' && <ClipboardCheck className="w-full h-full" />}
-                                                                    </div>
-                                                                </motion.div>
-                                                            </div>
-                                                            <Badge className="absolute top-4 right-4" variant="secondary">
-                                                                {getCategoryIcon(project.category)}
-                                                                <span className="ml-1">{project.category}</span>
-                                                            </Badge>
-                                                        </div>
-                                                        <CardHeader>
-                                                            <CardTitle>{project.title}</CardTitle>
-                                                            <CardDescription>{project.description}</CardDescription>
-                                                        </CardHeader>
-                                                        <CardContent>
-                                                            <AnimatePresence mode="wait">
-                                                                {hoveredProject === project.id && project.detailedMetrics ? (
+                            {projectCategories.map((category) => (
+                                <TabsContent key={category} value={category} className="mt-8 w-full">
+                                    <div className="grid gap-6 md:grid-cols-2">
+                                        {featuredProjects
+                                            .filter((project) => category === 'all' || project.category === category)
+                                            .map((project, index) => {
+                                                const projectTags = project.tech ?? project.tags ?? [];
+
+                                                return (
+                                                    <motion.div
+                                                        key={project.id}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        whileInView={{ opacity: 1, y: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ delay: index * 0.1 }}
+                                                        onMouseEnter={() => setHoveredProject(project.id)}
+                                                        onMouseLeave={() => setHoveredProject(null)}
+                                                    >
+                                                        <Card
+                                                            className={`group h-full overflow-hidden transition-all duration-300 ${
+                                                                project.featured
+                                                                    ? 'border-sky-500/40 bg-gradient-to-b from-sky-500/[0.08] via-card to-card shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20'
+                                                                    : 'hover:shadow-lg'
+                                                            } ${project.hasLiveDemo ? 'cursor-pointer' : ''}`}
+                                                            onClick={project.hasLiveDemo ? () => openProjectDemo(project.id) : undefined}
+                                                            onKeyDown={project.hasLiveDemo ? (event) => {
+                                                                if (event.key === 'Enter' || event.key === ' ') {
+                                                                    event.preventDefault();
+                                                                    openProjectDemo(project.id);
+                                                                }
+                                                            } : undefined}
+                                                            role={project.hasLiveDemo ? 'button' : undefined}
+                                                            tabIndex={project.hasLiveDemo ? 0 : undefined}
+                                                        >
+                                                            <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${getCategoryGradient(project.category)}`}>
+                                                                <div className="absolute inset-0 flex items-center justify-center">
                                                                     <motion.div
-                                                                        key="detailed"
-                                                                        initial={{ opacity: 0, height: 0 }}
-                                                                        animate={{ opacity: 1, height: 'auto' }}
-                                                                        exit={{ opacity: 0, height: 0 }}
-                                                                        transition={{ duration: 0.2 }}
-                                                                        className="grid grid-cols-3 gap-4 mb-4"
+                                                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                                                        transition={{ duration: 0.3 }}
                                                                     >
-                                                                        {project.detailedMetrics.map((metric, i) => (
-                                                                            <div key={i} className="text-center">
-                                                                                <div className="text-lg font-bold text-primary">{metric.value}</div>
-                                                                                <div className="text-xs text-muted-foreground">{metric.label}</div>
-                                                                            </div>
-                                                                        ))}
+                                                                        <div className="h-24 w-24 text-primary/40">
+                                                                            {project.category === 'Industry Tool' && <Package className="h-full w-full" />}
+                                                                            {project.category === 'Data Intelligence' && <TrendingUp className="h-full w-full" />}
+                                                                            {project.category === 'Sustainability' && <Leaf className="h-full w-full" />}
+                                                                            {project.category === 'Production' && <Factory className="h-full w-full" />}
+                                                                            {project.category === 'Operations' && <Activity className="h-full w-full" />}
+                                                                            {project.category === 'Standardization' && <ClipboardCheck className="h-full w-full" />}
+                                                                        </div>
                                                                     </motion.div>
-                                                                ) : (
-                                                                    <motion.div
-                                                                        key="normal"
-                                                                        initial={{ opacity: 0 }}
-                                                                        animate={{ opacity: 1 }}
-                                                                        exit={{ opacity: 0 }}
-                                                                        transition={{ duration: 0.2 }}
-                                                                        className="grid grid-cols-3 gap-4 mb-4"
-                                                                    >
-                                                                        {project.metrics?.map((metric, i) => (
-                                                                            <div key={i} className="text-center">
-                                                                                <div className="text-lg font-bold text-primary">{metric.value}</div>
-                                                                                <div className="text-xs text-muted-foreground">{metric.label}</div>
-                                                                            </div>
-                                                                        ))}
-                                                                    </motion.div>
-                                                                )}
-                                                            </AnimatePresence>
-                                                            <div className="flex flex-wrap gap-2 mb-4">
-                                                                {project.tags.map((tag) => (
-                                                                    <Badge key={tag} variant="outline" className="text-xs">
-                                                                        {tag}
+                                                                </div>
+                                                                <Badge className="absolute left-4 top-4" variant="secondary">
+                                                                    {getCategoryIcon(project.category)}
+                                                                    <span className="ml-1">{project.category}</span>
+                                                                </Badge>
+                                                                {project.featured ? (
+                                                                    <Badge className="absolute right-4 top-4 border-sky-400/30 bg-sky-500/90 text-white hover:bg-sky-500">
+                                                                        Featured
                                                                     </Badge>
-                                                                ))}
+                                                                ) : null}
                                                             </div>
-                                                            <Button
-                                                                variant="ghost"
-                                                                className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                                                                onClick={() => setSelectedProject(project)}
-                                                            >
-                                                                View Details
-                                                                <ExternalLink className="w-4 h-4 ml-2" />
-                                                            </Button>
-                                                        </CardContent>
-                                                    </Card>
-                                                </motion.div>
-                                            ))}
+                                                            <CardHeader>
+                                                                <CardTitle>{project.title}</CardTitle>
+                                                                <CardDescription>{project.description}</CardDescription>
+                                                            </CardHeader>
+                                                            <CardContent>
+                                                                <AnimatePresence mode="wait">
+                                                                    {hoveredProject === project.id && project.detailedMetrics ? (
+                                                                        <motion.div
+                                                                            key="detailed"
+                                                                            initial={{ opacity: 0, height: 0 }}
+                                                                            animate={{ opacity: 1, height: 'auto' }}
+                                                                            exit={{ opacity: 0, height: 0 }}
+                                                                            transition={{ duration: 0.2 }}
+                                                                            className="mb-4 grid grid-cols-3 gap-4"
+                                                                        >
+                                                                            {project.detailedMetrics.map((metric, metricIndex) => (
+                                                                                <div key={metricIndex} className="text-center">
+                                                                                    <div className="text-lg font-bold text-primary">{metric.value}</div>
+                                                                                    <div className="text-xs text-muted-foreground">{metric.label}</div>
+                                                                                </div>
+                                                                            ))}
+                                                                        </motion.div>
+                                                                    ) : (
+                                                                        <motion.div
+                                                                            key="normal"
+                                                                            initial={{ opacity: 0 }}
+                                                                            animate={{ opacity: 1 }}
+                                                                            exit={{ opacity: 0 }}
+                                                                            transition={{ duration: 0.2 }}
+                                                                            className="mb-4 grid grid-cols-3 gap-4"
+                                                                        >
+                                                                            {project.metrics?.map((metric, metricIndex) => (
+                                                                                <div key={metricIndex} className="text-center">
+                                                                                    <div className="text-lg font-bold text-primary">{metric.value}</div>
+                                                                                    <div className="text-xs text-muted-foreground">{metric.label}</div>
+                                                                                </div>
+                                                                            ))}
+                                                                        </motion.div>
+                                                                    )}
+                                                                </AnimatePresence>
+                                                                <div className="mb-4 flex flex-wrap gap-2">
+                                                                    {projectTags.map((tag) => (
+                                                                        <Badge key={tag} variant="outline" className="text-xs">
+                                                                            {tag}
+                                                                        </Badge>
+                                                                    ))}
+                                                                </div>
+
+                                                                {project.hasLiveDemo ? (
+                                                                    <div className="flex flex-col gap-3 sm:flex-row">
+                                                                        <Button
+                                                                            className="w-full bg-sky-500 text-white hover:bg-sky-600 sm:flex-1"
+                                                                            onClick={(event) => {
+                                                                                event.stopPropagation();
+                                                                                openProjectDemo(project.id);
+                                                                            }}
+                                                                        >
+                                                                            Live Demo
+                                                                            <ExternalLink className="ml-2 h-4 w-4" />
+                                                                        </Button>
+                                                                        {project.links?.github ? (
+                                                                            <Button
+                                                                                variant="outline"
+                                                                                className="w-full sm:w-auto"
+                                                                                onClick={(event) => {
+                                                                                    event.stopPropagation();
+                                                                                    window.open(project.links?.github, '_blank', 'noopener,noreferrer');
+                                                                                }}
+                                                                            >
+                                                                                GitHub
+                                                                                <Github className="ml-2 h-4 w-4" />
+                                                                            </Button>
+                                                                        ) : null}
+                                                                    </div>
+                                                                ) : (
+                                                                    <Button
+                                                                        variant="ghost"
+                                                                        className="w-full transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
+                                                                        onClick={() => handleProjectCardClick(project)}
+                                                                    >
+                                                                        View Details
+                                                                        <ExternalLink className="ml-2 h-4 w-4" />
+                                                                    </Button>
+                                                                )}
+                                                            </CardContent>
+                                                        </Card>
+                                                    </motion.div>
+                                                );
+                                            })}
                                     </div>
                                 </TabsContent>
                             ))}
                         </Tabs>
+
+                        {activeLiveDemoProject ? (
+                            <div
+                                ref={liveDemoRef}
+                                id="project-live-demo"
+                                className="mt-8 overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-b from-sky-500/[0.06] to-transparent p-4 md:p-6"
+                            >
+                                <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                    <div>
+                                        <Badge className="mb-3 border-sky-400/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/10">
+                                            Live Demo
+                                        </Badge>
+                                        <h3 className="text-2xl font-bold">{activeLiveDemoProject.title}</h3>
+                                        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                                            {activeLiveDemoProject.longDescription ?? activeLiveDemoProject.description}
+                                        </p>
+                                    </div>
+                                    <Button variant="outline" onClick={closeProjectDemo}>
+                                        Close Demo
+                                        <X className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </div>
+
+                                <div className="animate-in fade-in slide-in-from-top-4 duration-500">
+                                    {activeDemoId === 'smart-order-tracker' ? (
+                                        <OrderTrackerDashboard />
+                                    ) : (
+                                        <React.Suspense
+                                            fallback={
+                                                <div className="rounded-2xl border border-border bg-card/60 p-8 text-center text-muted-foreground">
+                                                    Loading interactive project demo...
+                                                </div>
+                                            }
+                                        >
+                                            <ProjectPortfolioDataDemo />
+                                        </React.Suspense>
+                                    )}
+                                </div>
+                            </div>
+                        ) : null}
                     </motion.div>
                 </div>
             </section>
@@ -1003,7 +1145,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <Badge className="mb-4" variant="outline">Career</Badge>
                             <h2 className="text-4xl font-bold mb-4">Professional Experience</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
-                                A track record of delivering innovative energy solutions across diverse projects
+                                A track record of delivering innovative energy solutions across diverse projects, with visual story highlights from the field.
                             </p>
                         </div>
 
@@ -1012,47 +1154,78 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block" />
 
                             <div className="space-y-8">
-                                {experience.map((exp, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="relative"
-                                    >
-                                        {/* Timeline Dot */}
-                                        <div className="absolute left-6 top-6 w-5 h-5 rounded-full bg-primary border-4 border-background z-10 hidden md:block" />
+                                {experience.map((exp, index) => {
+                                    const storyBundles = (exp.storySources ?? [])
+                                        .map((source, sourceIndex) => buildExperienceStoryBundle(source, index * 3 + sourceIndex))
+                                        .filter((bundle): bundle is NonNullable<typeof bundle> => Boolean(bundle));
 
-                                        <div className="md:ml-20">
-                                            <Card>
-                                                <CardHeader>
-                                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                                                        <div>
-                                                            <CardTitle>{exp.title}</CardTitle>
-                                                            <CardDescription className="text-base">{exp.company}</CardDescription>
+                                    return (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="relative"
+                                        >
+                                            {/* Timeline Dot */}
+                                            <div className="absolute left-6 top-6 w-5 h-5 rounded-full bg-primary border-4 border-background z-10 hidden md:block" />
+
+                                            <div className="md:ml-20">
+                                                <Card>
+                                                    <CardHeader>
+                                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                                                            <div>
+                                                                <CardTitle>{exp.title}</CardTitle>
+                                                                <CardDescription className="text-base">{exp.company}</CardDescription>
+                                                            </div>
+                                                            <Badge variant="outline">{exp.period}</Badge>
                                                         </div>
-                                                        <Badge variant="outline">{exp.period}</Badge>
-                                                    </div>
-                                                </CardHeader>
-                                                <CardContent>
-                                                    <p className="text-muted-foreground mb-4">{exp.description}</p>
-                                                    <div className="space-y-2">
-                                                        <h4 className="font-semibold text-sm">Key Achievements:</h4>
-                                                        <ul className="space-y-2">
-                                                            {exp.achievements.map((achievement, i) => (
-                                                                <li key={i} className="flex items-start gap-2 text-sm">
-                                                                    <TrendingUp className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                                                    <span>{achievement}</span>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                </CardContent>
-                                            </Card>
-                                        </div>
-                                    </motion.div>
-                                ))}
+                                                    </CardHeader>
+                                                    <CardContent>
+                                                        <p className="text-muted-foreground mb-4">{exp.description}</p>
+                                                        <div className="space-y-2">
+                                                            <h4 className="font-semibold text-sm">Key Achievements:</h4>
+                                                            <ul className="space-y-2">
+                                                                {exp.achievements.map((achievement, i) => (
+                                                                    <li key={i} className="flex items-start gap-2 text-sm">
+                                                                        <TrendingUp className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                                                        <span>{achievement}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+
+                                                        {storyBundles.length > 0 ? (
+                                                            <div className="mt-6 border-t border-border pt-5">
+                                                                <div className="space-y-3">
+                                                                    <div>
+                                                                        <p className="text-sm font-semibold">Visual Stories</p>
+                                                                        <p className="text-sm text-muted-foreground">
+                                                                            Tap a story to review field photos and short notes linked to this experience.
+                                                                        </p>
+                                                                    </div>
+                                                                    <div className="flex flex-wrap items-start gap-4">
+                                                                        {storyBundles.map((storyBundle) => (
+                                                                            <div key={`${exp.company}-${storyBundle.title}`} className="flex items-center gap-3">
+                                                                                <StoryViewer
+                                                                                    stories={storyBundle.stories}
+                                                                                    username={storyBundle.title}
+                                                                                    avatar={storyBundle.avatar}
+                                                                                    timestamp={storyBundle.timestamp}
+                                                                                />
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ) : null}
+                                                    </CardContent>
+                                                </Card>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </motion.div>

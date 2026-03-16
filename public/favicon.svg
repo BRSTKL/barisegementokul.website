@@ -1,0 +1,52 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="124" fill="#060410"/>
+  <g filter="url(#glowPanel)">
+    <rect x="116" y="84" width="280" height="332" rx="72" fill="url(#panelGradient)"/>
+    <rect x="120" y="88" width="272" height="324" rx="68" stroke="url(#panelStroke)" stroke-width="6"/>
+  </g>
+  <g filter="url(#blobGlow)">
+    <path d="M356 166C402 186 423 230 407 275C393 314 359 333 330 360C296 391 277 440 230 440C182 440 149 404 136 360C123 316 139 272 159 230C180 185 205 130 254 118C297 107 317 145 356 166Z" fill="url(#blobGradient)" fill-opacity="0.78"/>
+  </g>
+  <g filter="url(#waveGlowBlue)">
+    <path d="M112 326C147 326 146 236 191 236C236 236 231 353 281 353C327 353 322 189 376 189" stroke="#59F5FF" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#waveGlowMagenta)">
+    <path d="M114 354C154 354 164 274 202 274C248 274 252 160 301 160C349 160 348 314 397 314" stroke="#C57BFF" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <path d="M110 342C148 342 151 263 195 263C238 263 244 345 285 345C331 345 337 207 397 207" stroke="white" stroke-opacity="0.7" stroke-width="8" stroke-linecap="round"/>
+  <defs>
+    <filter id="glowPanel" x="78" y="46" width="356" height="408" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="14" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+    <filter id="blobGlow" x="88" y="70" width="365" height="415" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="18" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+    <filter id="waveGlowBlue" x="82" y="157" width="324" height="225" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="12" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+    <filter id="waveGlowMagenta" x="84" y="130" width="343" height="254" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="12" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+    <linearGradient id="panelGradient" x1="256" y1="84" x2="256" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B8BFF"/>
+      <stop offset="0.55" stop-color="#10162C"/>
+      <stop offset="1" stop-color="#25124D"/>
+    </linearGradient>
+    <linearGradient id="panelStroke" x1="132" y1="96" x2="380" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6DBFFF" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#C57BFF" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="blobGradient" x1="212" y1="150" x2="395" y2="374" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7C8A"/>
+      <stop offset="1" stop-color="#A82B89"/>
+    </linearGradient>
+  </defs>
+</svg>

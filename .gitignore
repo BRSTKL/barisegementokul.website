@@ -10,7 +10,10 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+dist-validation*
 *.local
+codex-run*.cmd
+gemini_style_logo_*.png
 
 # Editor directories and files
 .vscode/*

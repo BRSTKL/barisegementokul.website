@@ -30,6 +30,7 @@ import { AnimatedNavigationTabs } from '@/components/ui/animated-navigation-tabs
 import { DownloadButton } from '@/components/ui/download-animation';
 import { SkyToggle } from '@/components/ui/sky-toggle';
 import { ProjectDetails } from './ProjectDetails';
+import { DataLabProjectPage } from './DataLabProjectPage';
 import {
     Dialog,
     DialogContent,
@@ -44,6 +45,7 @@ interface Project {
     title: string;
     description: string;
     category: string;
+    projectType?: 'gallery' | 'interactive-demo';
     tags: string[];
     image: string;
     metrics?: {
@@ -87,6 +89,19 @@ interface Publication {
     link: string;
 }
 
+const NAV_ITEMS = [
+    { id: 'home', tile: 'Home' },
+    { id: 'about', tile: 'About' },
+    { id: 'demo', tile: 'Data Lab' },
+    { id: 'projects', tile: 'Projects' },
+    { id: 'publications', tile: 'Publications' },
+    { id: 'experience', tile: 'Experience' },
+    { id: 'education', tile: 'Education' },
+    { id: 'contact', tile: 'Contact' }
+];
+
+const SECTION_IDS = NAV_ITEMS.map((item) => item.id);
+
 const EnergySystemsPortfolio: React.FC = () => {
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -96,17 +111,26 @@ const EnergySystemsPortfolio: React.FC = () => {
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-    const NAV_ITEMS = [
-        { id: 'home', tile: 'Home' },
-        { id: 'about', tile: 'About' },
-        { id: 'projects', tile: 'Projects' },
-        { id: 'publications', tile: 'Publications' },
-        { id: 'experience', tile: 'Experience' },
-        { id: 'education', tile: 'Education' },
-        { id: 'contact', tile: 'Contact' }
-    ];
-
     const projects: Project[] = [
+        {
+            id: 'data-lab',
+            title: 'Construction Portfolio Data Lab',
+            description: 'Interactive construction portfolio intelligence demo that consolidates Excel and PDF trackers, runs QA checks, exports reports, and produces secure Gemini-backed management summaries.',
+            category: 'Data Intelligence',
+            projectType: 'interactive-demo',
+            tags: ['Excel Ingestion', 'PDF Parsing', 'QA Checks', 'CSV Export', 'Secure Gemini Proxy', 'Management Reporting'],
+            image: 'data-lab',
+            metrics: [
+                { label: 'Inputs', value: 'Excel + PDF' },
+                { label: 'Outputs', value: 'CSV + Report' },
+                { label: 'LLM Mode', value: 'Server-secure' }
+            ],
+            detailedMetrics: [
+                { label: 'Audit', value: 'Column Mapping' },
+                { label: 'Checks', value: 'QA + Staleness' },
+                { label: 'Summary', value: 'Gemini Proxy' }
+            ]
+        },
         {
             id: '1',
             title: 'Energy Efficiency & Compliance Optimization',
@@ -210,6 +234,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             ]
         }
     ];
+    const dataLabProject = projects.find((project) => project.id === 'data-lab') ?? null;
 
     const skills: Skill[] = [
         { name: 'Solar PV Systems', level: 95, icon: <Sun className="w-5 h-5" /> },
@@ -351,8 +376,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['home', 'about', 'projects', 'publications', 'experience', 'education', 'contact'];
-            const current = sections.find(section => {
+            const current = SECTION_IDS.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
@@ -377,6 +401,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const getCategoryIcon = (category: string) => {
         switch (category) {
+            case 'Data Intelligence': return <TrendingUp className="w-4 h-4" />;
             case 'Sustainability': return <Leaf className="w-4 h-4" />;
             case 'Production': return <Factory className="w-4 h-4" />;
             case 'Operations': return <Activity className="w-4 h-4" />;
@@ -387,6 +412,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
     const getCategoryGradient = (category: string) => {
         switch (category) {
+            case 'Data Intelligence': return 'from-sky-500/20 to-indigo-500/20';
             case 'Sustainability': return 'from-yellow-500/20 to-orange-500/20';
             case 'Production': return 'from-blue-500/20 to-cyan-500/20';
             case 'Operations': return 'from-green-500/20 to-emerald-500/20';
@@ -396,6 +422,18 @@ const EnergySystemsPortfolio: React.FC = () => {
     };
 
     if (selectedProject) {
+        if (selectedProject.projectType === 'interactive-demo') {
+            return (
+                <DataLabProjectPage
+                    title={selectedProject.title}
+                    description={selectedProject.description}
+                    tags={selectedProject.tags}
+                    metrics={selectedProject.metrics}
+                    onBack={() => setSelectedProject(null)}
+                />
+            );
+        }
+
         return (
             <ProjectDetails
                 projectTitle={selectedProject.title}
@@ -454,7 +492,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 exit={{ opacity: 0, height: 0 }}
                                 className="md:hidden mt-4 pb-4"
                             >
-                                {['home', 'about', 'projects', 'publications', 'experience', 'education', 'contact'].map((section) => (
+                                {SECTION_IDS.map((section) => (
                                     <button
                                         key={section}
                                         onClick={() => scrollToSection(section)}
@@ -690,6 +728,67 @@ const EnergySystemsPortfolio: React.FC = () => {
                 </div>
             </section>
 
+            <section id="demo" className="py-20 bg-gradient-to-b from-background via-background to-muted/20">
+                <div className="container mx-auto px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className="text-center mb-12">
+                            <Badge className="mb-4" variant="outline">Demo Application</Badge>
+                            <h2 className="text-4xl font-bold mb-4">Construction Portfolio Data Lab</h2>
+                            <p className="text-muted-foreground max-w-3xl mx-auto">
+                                The Data Lab now lives as a standalone interactive project page. Use this teaser section
+                                to jump into the live demo from navigation or discover it in the featured projects grid.
+                            </p>
+                        </div>
+
+                        <Card className="border-primary/20 bg-gradient-to-br from-background via-background to-primary/10">
+                            <CardContent className="pt-8">
+                                <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
+                                    <div className="space-y-5">
+                                        <div className="flex flex-wrap gap-2">
+                                            <Badge variant="secondary">Interactive Demo</Badge>
+                                            <Badge variant="outline">Secure Gemini Proxy</Badge>
+                                        </div>
+                                        <h3 className="text-3xl font-bold">Open the full project page and test the app there</h3>
+                                        <p className="text-muted-foreground">
+                                            The dedicated project page includes file upload, QA findings, mapping audit,
+                                            exports, and LLM interpretation in one standalone case study.
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {dataLabProject?.tags.slice(0, 6).map((tag) => (
+                                                <Badge key={tag} variant="outline">{tag}</Badge>
+                                            ))}
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            <Button onClick={() => dataLabProject && setSelectedProject(dataLabProject)}>
+                                                Open Project Page
+                                                <ExternalLink className="w-4 h-4 ml-2" />
+                                            </Button>
+                                            <Button variant="outline" onClick={() => scrollToSection('projects')}>
+                                                View in Projects
+                                            </Button>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                                        {dataLabProject?.metrics?.map((metric) => (
+                                            <div key={metric.label} className="rounded-2xl border border-border/60 bg-background/70 p-5">
+                                                <div className="text-2xl font-bold text-primary">{metric.value}</div>
+                                                <div className="mt-2 text-sm text-muted-foreground">{metric.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* Projects Section with Hover Effects */}
             <section id="projects" className="py-20">
                 <div className="container mx-auto px-4">
@@ -703,20 +802,21 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <Badge className="mb-4" variant="outline">Portfolio</Badge>
                             <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
-                                Showcasing innovative energy solutions across solar, wind, storage, and hybrid systems
+                                Showcasing energy systems work alongside interactive analytics and data intelligence applications
                             </p>
                         </div>
 
                         <Tabs defaultValue="all" className="mb-12 flex flex-col items-center">
                             <TabsList className="flex flex-wrap h-auto w-fit justify-center gap-2 p-1">
                                 <TabsTrigger value="all">All</TabsTrigger>
+                                <TabsTrigger value="Data Intelligence">Data Intelligence</TabsTrigger>
                                 <TabsTrigger value="Sustainability">Sustainability</TabsTrigger>
                                 <TabsTrigger value="Production">Production</TabsTrigger>
                                 <TabsTrigger value="Operations">Operations</TabsTrigger>
                                 <TabsTrigger value="Standardization">Standardization</TabsTrigger>
                             </TabsList>
 
-                            {['all', 'Sustainability', 'Production', 'Operations', 'Standardization'].map((category) => (
+                            {['all', 'Data Intelligence', 'Sustainability', 'Production', 'Operations', 'Standardization'].map((category) => (
                                 <TabsContent key={category} value={category} className="mt-8">
                                     <div className="grid md:grid-cols-2 gap-6">
                                         {projects
@@ -739,6 +839,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                                     transition={{ duration: 0.3 }}
                                                                 >
                                                                     <div className="w-24 h-24 text-primary/40">
+                                                                        {project.category === 'Data Intelligence' && <TrendingUp className="w-full h-full" />}
                                                                         {project.category === 'Sustainability' && <Leaf className="w-full h-full" />}
                                                                         {project.category === 'Production' && <Factory className="w-full h-full" />}
                                                                         {project.category === 'Operations' && <Activity className="w-full h-full" />}

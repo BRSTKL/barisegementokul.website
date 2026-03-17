@@ -131,7 +131,7 @@ export const AlertPanel = memo(function AlertPanel({ orders }: AlertPanelProps) 
 
   return (
     <Card className="bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+      <CardHeader className="flex flex-col items-start justify-between gap-3 space-y-0 pb-4 sm:flex-row sm:items-center">
         <div>
           <CardTitle className="text-lg">Active Alerts</CardTitle>
           <div className="mt-1 text-sm text-muted-foreground">
@@ -162,7 +162,7 @@ export const AlertPanel = memo(function AlertPanel({ orders }: AlertPanelProps) 
               return (
                 <div
                   key={`${alert.severity}-${alert.order.id}`}
-                  className={`flex w-full items-start gap-3 rounded-lg border border-border/60 border-l-4 px-4 py-3 text-left shadow-sm transition-colors hover:bg-accent/40 ${styles.container}`}
+                  className={`flex w-full flex-col gap-3 rounded-lg border border-border/60 border-l-4 px-4 py-3 text-left shadow-sm transition-colors hover:bg-accent/40 sm:flex-row sm:items-start ${styles.container}`}
                 >
                   <Icon className={`mt-0.5 h-4 w-4 flex-shrink-0 ${styles.iconClassName}`} />
                   <div className="min-w-0 flex-1">
@@ -178,7 +178,7 @@ export const AlertPanel = memo(function AlertPanel({ orders }: AlertPanelProps) 
                       {alert.order.part} {"\u00b7"} Est. {formatEstimatedDate(alert.order.estimatedDelivery)}
                     </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
+                  <div className="flex w-full flex-col items-start gap-2 sm:w-auto sm:items-end">
                     <Badge className={statusBadgeClassNames[alert.order.status]}>
                       {alert.order.status}
                     </Badge>

@@ -97,9 +97,13 @@ export function OrderTable({ orders, onOrderClick }: OrderTableProps) {
   }, [sortKey])
 
   return (
-    <div className="overflow-x-auto">
-      <div className="max-h-[420px] overflow-y-auto rounded-lg border bg-card text-card-foreground shadow-sm">
-        <table className="w-full min-w-[920px] text-sm">
+    <div className="space-y-2">
+      <div className="px-1 text-xs text-muted-foreground sm:hidden">
+        Swipe horizontally to view the full order table.
+      </div>
+      <div className="overflow-x-auto">
+        <div className="max-h-[420px] overflow-y-auto rounded-lg border bg-card text-card-foreground shadow-sm">
+          <table className="w-full min-w-[840px] text-sm">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b">
               <SortableHeader
@@ -196,7 +200,8 @@ export function OrderTable({ orders, onOrderClick }: OrderTableProps) {
               )
             })}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
     </div>
   )

@@ -67,10 +67,24 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply overflow-x-hidden bg-background text-foreground antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    section[id] {
+      scroll-margin-top: 7rem;
+    }
   }
 }

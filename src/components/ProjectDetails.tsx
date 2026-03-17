@@ -64,15 +64,15 @@ export function ProjectDetails({ projectTitle, images = defaultImages, onBack }:
     }, [])
 
     return (
-        <main className="dark min-h-screen w-full bg-background text-foreground relative">
-            <div className="fixed top-6 left-6 z-50">
-                <Button variant="outline" size="sm" onClick={onBack} className="bg-background/80 backdrop-blur-md">
+        <main className="dark relative min-h-screen w-full overflow-x-clip bg-background text-foreground">
+            <div className="fixed left-4 right-4 top-4 z-50 sm:left-6 sm:right-auto sm:top-6">
+                <Button variant="outline" size="sm" onClick={onBack} className="w-full justify-center bg-background/80 backdrop-blur-md sm:w-auto">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Portfolio
                 </Button>
             </div>
 
-            <div className="relative flex h-[45vh] items-center justify-end flex-col gap-6 pb-12 z-50 mt-10">
+            <div className="relative z-50 mt-16 flex h-[38vh] flex-col items-center justify-end gap-4 px-4 pb-10 sm:mt-10 sm:h-[45vh] sm:gap-6 sm:pb-12">
                 {/* Radial spotlight */}
                 <div
                     aria-hidden="true"
@@ -82,21 +82,21 @@ export function ProjectDetails({ projectTitle, images = defaultImages, onBack }:
                         'blur-[30px]',
                     )}
                 />
-                <h2 className="text-xl md:text-2xl font-medium text-muted-foreground uppercase tracking-widest">
+                <h2 className="text-center text-sm font-medium uppercase tracking-[0.4em] text-muted-foreground sm:text-xl md:text-2xl">
                     Project Study
                 </h2>
-                <h1 className="text-center text-5xl md:text-7xl font-bold max-w-4xl px-4 z-10 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+                <h1 className="z-10 max-w-4xl bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text px-4 text-center text-3xl font-bold text-transparent sm:text-5xl md:text-7xl">
                     {projectTitle}
                 </h1>
-                <p className="text-muted-foreground animate-pulse mt-8">
+                <p className="mt-4 animate-pulse text-center text-sm text-muted-foreground sm:mt-8">
                     Scroll Down for Details
                 </p>
             </div>
             <div className="mt-8 relative z-0">
                 <ZoomParallax images={images} />
             </div>
-            <div className="h-[50vh] flex items-center justify-center">
-                <Button size="lg" onClick={onBack}>
+            <div className="flex h-[32vh] items-center justify-center px-4 sm:h-[50vh]">
+                <Button size="lg" className="w-full sm:w-auto" onClick={onBack}>
                     Finish Review
                 </Button>
             </div>

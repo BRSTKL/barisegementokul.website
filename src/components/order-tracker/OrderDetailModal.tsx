@@ -63,8 +63,8 @@ export function OrderDetailModal({ order, onClose }: OrderDetailModalProps) {
 
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-lg rounded-xl border bg-background p-0 shadow-xl">
-        <DialogHeader className="border-b border-border px-6 py-5 pr-12">
+      <DialogContent className="max-h-[90vh] w-[calc(100vw-1rem)] max-w-lg overflow-y-auto rounded-xl border bg-background p-0 shadow-xl sm:w-full">
+        <DialogHeader className="border-b border-border px-4 py-4 pr-12 sm:px-6 sm:py-5">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
               <DialogTitle className="font-mono text-xl font-bold text-foreground">
@@ -77,7 +77,7 @@ export function OrderDetailModal({ order, onClose }: OrderDetailModalProps) {
           </div>
         </DialogHeader>
 
-        <div className="space-y-6 px-6 py-5">
+        <div className="space-y-6 px-4 py-4 sm:px-6 sm:py-5">
           <div className="grid gap-4 sm:grid-cols-2">
             <InfoItem label="Customer" value={order.customer} />
             <InfoItem label="Order Date" value={formatDate(order.orderDate)} />
@@ -106,7 +106,38 @@ export function OrderDetailModal({ order, onClose }: OrderDetailModalProps) {
             <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Delivery Progress
             </div>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="space-y-3 sm:hidden">
+              {STEP_ORDER.map((step, index) => {
+                const isCompleted = index <= completedStepIndex
+                const isCurrent = currentStepIndex === index
+                const delayedCurrent = delayed && isCurrent
+
+                return (
+                  <div key={step} className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3">
+                    <div
+                      className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 text-[11px] font-semibold ${
+                        isCompleted
+                          ? "border-sky-500 bg-sky-500 text-white"
+                          : delayedCurrent
+                            ? "border-red-500 bg-red-500 text-white ring-4 ring-red-500/20"
+                            : isCurrent
+                              ? "border-sky-500 bg-sky-500 text-white ring-4 ring-sky-500/20"
+                              : "border-slate-300 bg-background text-slate-400 dark:border-slate-700 dark:text-slate-500"
+                      }`}
+                    >
+                      {index + 1}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-sm font-medium text-foreground">{step}</div>
+                      <div className="mt-1 text-xs text-muted-foreground">
+                        {isCompleted ? "Completed" : isCurrent ? (delayedCurrent ? "Delayed" : "Current stage") : "Upcoming"}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="hidden grid-cols-5 gap-2 sm:grid">
               {STEP_ORDER.map((step, index) => {
                 const isCompleted = index <= completedStepIndex
                 const isCurrent = currentStepIndex === index

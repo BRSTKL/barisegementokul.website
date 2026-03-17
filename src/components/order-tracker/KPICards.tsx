@@ -50,7 +50,7 @@ export const KPICards = memo(function KPICards({ kpis }: KPICardsProps) {
   ] as const
 
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map(({ label, value, subtitle, valueClassName, Icon }) => (
         <Card key={label} className="bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/50">
           <CardContent className="p-5">
@@ -59,7 +59,7 @@ export const KPICards = memo(function KPICards({ kpis }: KPICardsProps) {
                 <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                   {label}
                 </div>
-                <div className={`mt-3 text-3xl font-bold font-mono ${valueClassName}`}>{value}</div>
+                <div className={`mt-3 text-2xl font-bold font-mono sm:text-3xl ${valueClassName}`}>{value}</div>
                 <div className="mt-2 text-xs text-muted-foreground">{subtitle}</div>
               </div>
               <Icon className="h-[18px] w-[18px] flex-shrink-0 text-muted-foreground" />

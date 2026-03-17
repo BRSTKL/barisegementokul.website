@@ -259,7 +259,7 @@ export function ProjectPortfolioDataLabLayout({
   ]
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div className="grid gap-6 xl:grid-cols-[1.2fr,0.8fr]">
         <Card className="border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
           <CardHeader>
@@ -269,7 +269,7 @@ export function ProjectPortfolioDataLabLayout({
               </Badge>
               <Badge variant="secondary">{analysis.mode === "sample" ? "Sample dataset" : "Uploaded dataset"}</Badge>
             </div>
-            <CardTitle className="text-3xl tracking-tight">
+            <CardTitle className="text-2xl tracking-tight sm:text-3xl">
               Understand the dataset quickly, then drill into the records that need work.
             </CardTitle>
             <CardDescription>
@@ -279,7 +279,7 @@ export function ProjectPortfolioDataLabLayout({
           </CardHeader>
           <CardContent className="space-y-4">
             <div
-              className={`rounded-3xl border-2 border-dashed p-6 transition-colors ${
+              className={`rounded-3xl border-2 border-dashed p-5 transition-colors sm:p-6 ${
                 isDragging ? "border-primary bg-primary/10" : "border-border bg-background/70"
               }`}
               onDragOver={onDragOver}
@@ -297,12 +297,12 @@ export function ProjectPortfolioDataLabLayout({
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  <Button onClick={onChooseFiles} disabled={isLoading}>
+                <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
+                  <Button className="w-full sm:w-auto" onClick={onChooseFiles} disabled={isLoading}>
                     <Upload className="mr-2 h-4 w-4" />
                     Choose files
                   </Button>
-                  <Button variant="outline" onClick={onLoadSample} disabled={isLoading}>
+                  <Button className="w-full sm:w-auto" variant="outline" onClick={onLoadSample} disabled={isLoading}>
                     Load sample
                   </Button>
                 </div>
@@ -327,16 +327,16 @@ export function ProjectPortfolioDataLabLayout({
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" onClick={() => downloadAnalysisCsv(analysis)}>
+            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <Button className="w-full sm:w-auto" variant="outline" size="sm" onClick={() => downloadAnalysisCsv(analysis)}>
                 <Download className="mr-2 h-4 w-4" />
                 Export normalized CSV
               </Button>
-              <Button variant="outline" size="sm" onClick={() => downloadMappingAuditCsv(analysis)}>
+              <Button className="w-full sm:w-auto" variant="outline" size="sm" onClick={() => downloadMappingAuditCsv(analysis)}>
                 <Table2 className="mr-2 h-4 w-4" />
                 Export mapping audit
               </Button>
-              <Button variant="outline" size="sm" onClick={() => downloadReportMarkdown(analysis)}>
+              <Button className="w-full sm:w-auto" variant="outline" size="sm" onClick={() => downloadReportMarkdown(analysis)}>
                 <FileText className="mr-2 h-4 w-4" />
                 Download report
               </Button>

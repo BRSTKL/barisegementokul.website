@@ -554,7 +554,7 @@ const EnergySystemsPortfolio: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen overflow-x-clip bg-background text-foreground">
             {/* Navigation */}
             <motion.nav
                 className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border"
@@ -562,14 +562,14 @@ const EnergySystemsPortfolio: React.FC = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="container mx-auto px-4 py-4">
+                <div className="container mx-auto px-4 py-3 md:py-4">
                     <div className="flex items-center justify-between">
                         <motion.div
-                            className="flex items-center gap-2"
+                            className="flex min-w-0 items-center gap-2"
                             whileHover={{ scale: 1.05 }}
                         >
-                            <Zap className="w-6 h-6 text-primary" />
-                            <span className="text-xl font-bold">Energy Systems Engineer</span>
+                            <Zap className="h-5 w-5 flex-shrink-0 text-primary sm:h-6 sm:w-6" />
+                            <span className="truncate text-sm font-bold sm:text-base md:text-xl">Energy Systems Engineer</span>
                         </motion.div>
 
                         {/* Desktop Navigation */}
@@ -586,8 +586,9 @@ const EnergySystemsPortfolio: React.FC = () => {
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden"
+                            className="rounded-xl border border-border/70 p-2 transition-colors hover:bg-accent md:hidden"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                         >
                             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -600,20 +601,20 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="md:hidden mt-4 pb-4"
+                                className="mt-4 rounded-2xl border border-border/70 bg-background/95 px-2 pb-2 pt-2 shadow-lg md:hidden"
                             >
                                 {SECTION_IDS.map((section) => (
                                     <button
                                         key={section}
                                         onClick={() => scrollToSection(section)}
-                                        className="block w-full text-left py-2 capitalize hover:text-primary transition-colors"
+                                        className="block w-full rounded-xl px-3 py-2.5 text-left capitalize transition-colors hover:bg-accent hover:text-primary"
                                     >
                                         {section}
                                     </button>
                                 ))}
-                                <div className="flex items-center justify-between mt-4 mb-2">
+                                <div className="mt-4 flex items-center justify-between border-t border-border/70 px-3 pt-4">
                                     <span className="text-sm font-medium">Theme</span>
-                                    <div className="flex items-center">
+                                    <div className="flex items-center gap-2">
                                         <DownloadButton />
                                         <SkyToggle />
                                     </div>
@@ -625,7 +626,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             </motion.nav>
 
             {/* Hero Section with Energy Flow Animation */}
-            <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+            <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-16 pt-24 sm:pb-20">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
 
                 {/* Animated Energy Flow Circuits */}
@@ -682,7 +683,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                 </div>
 
                 <motion.div
-                    className="container mx-auto px-4 text-center relative z-10"
+                    className="container relative z-10 mx-auto px-0 text-center"
                     style={{ opacity, scale }}
                 >
                     <motion.div
@@ -694,18 +695,18 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <Zap className="w-3 h-3 mr-1" />
                             Professional Engineer
                         </Badge>
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                        <h1 className="mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text pb-2 text-4xl font-bold text-transparent sm:text-5xl md:pb-6 md:text-7xl">
                             Powering the Future
                         </h1>
-                        <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                        <p className="mx-auto mb-8 max-w-2xl text-base text-muted-foreground sm:text-lg md:text-2xl">
                             Energy Systems Engineer specializing in renewable energy integration, grid modernization, and sustainable power solutions
                         </p>
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <Button size="lg" onClick={() => scrollToSection('projects')}>
+                        <div className="mx-auto flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
+                            <Button size="lg" className="w-full sm:w-auto" onClick={() => scrollToSection('projects')}>
                                 View Projects
                                 <ChevronDown className="w-4 h-4 ml-2" />
                             </Button>
-                            <Button size="lg" variant="outline" onClick={() => scrollToSection('contact')}>
+                            <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => scrollToSection('contact')}>
                                 Get in Touch
                                 <Mail className="w-4 h-4 ml-2" />
                             </Button>
@@ -714,7 +715,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
                     {/* Stats */}
                     <motion.div
-                        className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
+                        className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:mt-16 sm:gap-6 lg:grid-cols-4"
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
@@ -726,9 +727,9 @@ const EnergySystemsPortfolio: React.FC = () => {
                             { label: 'Languages', value: '3' }
                         ].map((stat, index) => (
                             <Card key={index} className="bg-card/50 backdrop-blur">
-                                <CardContent className="pt-6">
-                                    <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                                <CardContent className="pt-5 sm:pt-6">
+                                    <div className="mb-2 text-2xl font-bold text-primary sm:text-3xl">{stat.value}</div>
+                                    <div className="text-xs text-muted-foreground sm:text-sm">{stat.label}</div>
                                 </CardContent>
                             </Card>
                         ))}
@@ -736,7 +737,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                 </motion.div>
 
                 <motion.div
-                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                    className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 transform sm:block"
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -755,13 +756,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">About Me</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Expertise & Skills</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Expertise & Skills</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 Passionate about creating sustainable energy solutions that drive the transition to a cleaner future
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8 mb-12">
+                        <div className="mb-12 grid gap-6 md:grid-cols-2 md:gap-8">
                             <Card>
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2">
@@ -849,24 +850,26 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">Portfolio</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Featured Projects</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 Showcasing energy systems work alongside interactive analytics and data intelligence applications
                             </p>
                         </div>
 
                         <Tabs defaultValue="all" className="mb-12 flex flex-col items-center">
-                            <TabsList className="flex h-auto w-fit flex-wrap justify-center gap-2 p-1">
+                            <div className="w-full overflow-x-auto pb-2">
+                            <TabsList className="flex h-auto w-max min-w-full justify-start gap-2 p-1 sm:w-fit sm:min-w-0 sm:flex-wrap sm:justify-center">
                                 {projectCategories.map((category) => (
-                                    <TabsTrigger key={category} value={category}>
+                                    <TabsTrigger key={category} value={category} className="shrink-0">
                                         {category === 'all' ? 'All' : category}
                                     </TabsTrigger>
                                 ))}
                             </TabsList>
+                            </div>
 
                             {projectCategories.map((category) => (
                                 <TabsContent key={category} value={category} className="mt-8 w-full">
-                                    <div className="grid gap-6 md:grid-cols-2">
+                                    <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                                         {featuredProjects
                                             .filter((project) => category === 'all' || project.category === category)
                                             .map((project, index) => {
@@ -937,10 +940,10 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                                             animate={{ opacity: 1, height: 'auto' }}
                                                                             exit={{ opacity: 0, height: 0 }}
                                                                             transition={{ duration: 0.2 }}
-                                                                            className="mb-4 grid grid-cols-3 gap-4"
+                                                                            className="mb-4 grid gap-3 sm:grid-cols-3"
                                                                         >
                                                                             {project.detailedMetrics.map((metric, metricIndex) => (
-                                                                                <div key={metricIndex} className="text-center">
+                                                                                <div key={metricIndex} className="rounded-xl bg-muted/20 p-3 text-center sm:bg-transparent sm:p-0">
                                                                                     <div className="text-lg font-bold text-primary">{metric.value}</div>
                                                                                     <div className="text-xs text-muted-foreground">{metric.label}</div>
                                                                                 </div>
@@ -953,10 +956,10 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                                             animate={{ opacity: 1 }}
                                                                             exit={{ opacity: 0 }}
                                                                             transition={{ duration: 0.2 }}
-                                                                            className="mb-4 grid grid-cols-3 gap-4"
+                                                                            className="mb-4 grid gap-3 sm:grid-cols-3"
                                                                         >
                                                                             {project.metrics?.map((metric, metricIndex) => (
-                                                                                <div key={metricIndex} className="text-center">
+                                                                                <div key={metricIndex} className="rounded-xl bg-muted/20 p-3 text-center sm:bg-transparent sm:p-0">
                                                                                     <div className="text-lg font-bold text-primary">{metric.value}</div>
                                                                                     <div className="text-xs text-muted-foreground">{metric.label}</div>
                                                                                 </div>
@@ -1022,19 +1025,19 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <div
                                 ref={liveDemoRef}
                                 id="project-live-demo"
-                                className="mt-8 overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-b from-sky-500/[0.06] to-transparent p-4 md:p-6"
+                                className="mt-8 overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-b from-sky-500/[0.06] to-transparent p-3 sm:p-4 md:p-6"
                             >
                                 <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                                     <div>
                                         <Badge className="mb-3 border-sky-400/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/10">
                                             Live Demo
                                         </Badge>
-                                        <h3 className="text-2xl font-bold">{activeLiveDemoProject.title}</h3>
+                                        <h3 className="text-xl font-bold sm:text-2xl">{activeLiveDemoProject.title}</h3>
                                         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
                                             {activeLiveDemoProject.longDescription ?? activeLiveDemoProject.description}
                                         </p>
                                     </div>
-                                    <Button variant="outline" onClick={closeProjectDemo}>
+                                    <Button variant="outline" className="w-full sm:w-auto" onClick={closeProjectDemo}>
                                         Close Demo
                                         <X className="ml-2 h-4 w-4" />
                                     </Button>
@@ -1072,7 +1075,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">Research</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Publications & Papers</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Publications & Papers</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 Contributing to the advancement of energy systems through research and technical publications
                             </p>
@@ -1089,7 +1092,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 >
                                     <Card className="hover:shadow-md transition-shadow">
                                         <CardContent className="pt-6">
-                                            <div className="flex items-start gap-4">
+                                            <div className="flex flex-col items-start gap-4 sm:flex-row">
                                                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                                                     <FileText className="w-6 h-6 text-primary" />
                                                 </div>
@@ -1103,16 +1106,16 @@ const EnergySystemsPortfolio: React.FC = () => {
                                                     </p>
                                                     <Dialog>
                                                         <DialogTrigger asChild>
-                                                            <Button size="sm" variant="outline">
+                                                            <Button size="sm" variant="outline" className="w-full sm:w-auto">
                                                                 Read Paper
                                                                 <ExternalLink className="w-3 h-3 ml-2" />
                                                             </Button>
                                                         </DialogTrigger>
-                                                        <DialogContent className="max-w-4xl w-[90vw] h-[90vh]">
+                                                        <DialogContent className="h-[85vh] w-[calc(100vw-1rem)] max-w-4xl p-4 sm:h-[90vh] sm:w-[90vw] sm:p-6">
                                                             <DialogHeader>
-                                                                <DialogTitle>{pub.title}</DialogTitle>
+                                                                <DialogTitle className="pr-8 text-left text-base leading-snug sm:text-lg">{pub.title}</DialogTitle>
                                                             </DialogHeader>
-                                                            <div className="flex-1 w-full h-full min-h-[70vh] mt-4">
+                                                            <div className="mt-4 flex h-full min-h-[60vh] w-full flex-1 sm:min-h-[70vh]">
                                                                 <iframe
                                                                     src={`${pub.link}#toolbar=0`}
                                                                     className="w-full h-full rounded-md border"
@@ -1143,7 +1146,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">Career</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Professional Experience</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Professional Experience</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 A track record of delivering innovative energy solutions across diverse projects, with visual story highlights from the field.
                             </p>
@@ -1243,7 +1246,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">Education</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Academic Background</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Academic Background</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 Degrees and programs that shaped my engineering foundation
                             </p>
@@ -1260,7 +1263,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 >
                                     <Card className="hover:shadow-md transition-shadow">
                                         <CardContent className="pt-6">
-                                            <div className="flex items-start gap-4">
+                                            <div className="flex flex-col items-start gap-4 sm:flex-row">
                                                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                                                     <BookOpen className="w-6 h-6 text-primary" />
                                                 </div>
@@ -1294,7 +1297,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                     >
                         <div className="text-center mb-12">
                             <Badge className="mb-4" variant="outline">Get in Touch</Badge>
-                            <h2 className="text-4xl font-bold mb-4">Let's Connect</h2>
+                            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Let's Connect</h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
                                 Interested in collaborating on renewable energy projects or discussing innovative solutions?
                             </p>
@@ -1303,11 +1306,11 @@ const EnergySystemsPortfolio: React.FC = () => {
                         <div className="max-w-2xl mx-auto">
                             <Card>
                                 <CardContent className="pt-6">
-                                    <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                                         <motion.a
                                             href="mailto:engineer@example.com"
                                             whileHover={{ scale: 1.05 }}
-                                            className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary transition-colors"
+                                            className="flex items-start gap-4 rounded-lg border border-border p-4 transition-colors hover:border-primary sm:items-center"
                                         >
                                             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                                 <Mail className="w-6 h-6 text-primary" />
@@ -1323,7 +1326,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             whileHover={{ scale: 1.05 }}
-                                            className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary transition-colors"
+                                            className="flex items-start gap-4 rounded-lg border border-border p-4 transition-colors hover:border-primary sm:items-center"
                                         >
                                             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                                 <Linkedin className="w-6 h-6 text-primary" />
@@ -1339,7 +1342,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             whileHover={{ scale: 1.05 }}
-                                            className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary transition-colors"
+                                            className="flex items-start gap-4 rounded-lg border border-border p-4 transition-colors hover:border-primary sm:items-center"
                                         >
                                             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                                 <Github className="w-6 h-6 text-primary" />
@@ -1352,7 +1355,7 @@ const EnergySystemsPortfolio: React.FC = () => {
 
                                         <motion.div
                                             whileHover={{ scale: 1.05 }}
-                                            className="flex items-center gap-4 p-4 rounded-lg border border-border"
+                                            className="flex items-start gap-4 rounded-lg border border-border p-4 sm:items-center"
                                         >
                                             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                                 <Award className="w-6 h-6 text-primary" />
@@ -1382,7 +1385,7 @@ const EnergySystemsPortfolio: React.FC = () => {
             {/* Footer */}
             <footer className="py-8 border-t border-border bg-muted/30">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
                         <div className="flex items-center gap-2">
                             <Zap className="w-5 h-5 text-primary" />
                             <span className="font-semibold">Energy Systems Engineer</span>

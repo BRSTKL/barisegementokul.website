@@ -35,10 +35,10 @@ export function OrderTrackerDashboard() {
   return (
     <>
       <section className="rounded-xl border bg-card text-card-foreground shadow-sm">
-        <header className="rounded-t-xl border-b border-border bg-slate-900 px-6 py-5 text-slate-50">
+        <header className="rounded-t-xl border-b border-border bg-slate-900 px-4 py-4 text-slate-50 sm:px-6 sm:py-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
-              <h2 className="font-mono text-xl font-bold text-white">
+              <h2 className="font-mono text-lg font-bold text-white sm:text-xl">
                 Smart Order Tracker
               </h2>
               <p className="hidden mt-1 text-sm text-slate-300">
@@ -55,7 +55,7 @@ export function OrderTrackerDashboard() {
           </div>
         </header>
 
-        <div className="space-y-6 p-6">
+        <div className="space-y-5 p-4 sm:space-y-6 sm:p-6">
           <KPICards kpis={kpis} />
 
           <FilterBar
@@ -81,7 +81,7 @@ export function OrderTrackerDashboard() {
           <Charts orders={MOCK_ORDERS} />
         </div>
 
-        <footer className="border-t border-border px-6 py-4 text-center text-xs text-transparent">
+        <footer className="border-t border-border px-4 py-4 text-center text-xs text-transparent sm:px-6">
           Concept project · Siemens Energy Order Management · 2024
           <span className="text-muted-foreground">
             Concept project {"\u00b7"} Siemens Energy Order Management {"\u00b7"} 2024

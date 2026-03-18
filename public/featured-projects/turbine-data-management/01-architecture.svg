@@ -1,0 +1,84 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="90" x2="1460" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#14213D" />
+      <stop offset="1" stop-color="#1F365C" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38BDF8" />
+      <stop offset="1" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="success" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#34D399" />
+      <stop offset="1" stop-color="#10B981" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)" />
+  <circle cx="1290" cy="120" r="180" fill="#0EA5E9" fill-opacity="0.12" />
+  <circle cx="250" cy="770" r="210" fill="#10B981" fill-opacity="0.1" />
+
+  <text x="110" y="118" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">
+    Gas Turbine Blade Data Management System
+  </text>
+  <text x="110" y="158" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">
+    Project structure analyzed from the standalone Python repo
+  </text>
+
+  <rect x="110" y="210" width="270" height="130" rx="28" fill="url(#panel)" stroke="#334155" />
+  <text x="145" y="258" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">data/generate_data.py</text>
+  <text x="145" y="292" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18">Creates simulated blade records</text>
+  <text x="145" y="322" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">200 rows, controlled noise, missing values</text>
+
+  <rect x="450" y="210" width="270" height="130" rx="28" fill="url(#panel)" stroke="#334155" />
+  <text x="485" y="258" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">data/raw_blades.csv</text>
+  <text x="485" y="292" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18">Raw engineering dataset</text>
+  <text x="485" y="322" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">14 columns before pipeline processing</text>
+
+  <rect x="790" y="210" width="320" height="130" rx="28" fill="url(#accent)" />
+  <text x="825" y="258" fill="#EFF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">pipeline/clean_transform.py</text>
+  <text x="825" y="292" fill="#E0F2FE" font-family="Segoe UI, Arial, sans-serif" font-size="18">Schema check, imputation, anomaly flags</text>
+  <text x="825" y="322" fill="#DBEAFE" font-family="Segoe UI, Arial, sans-serif" font-size="16">Min-max normalization and audit export</text>
+
+  <rect x="1190" y="210" width="300" height="130" rx="28" fill="url(#success)" />
+  <text x="1225" y="258" fill="#ECFDF5" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">app.py</text>
+  <text x="1225" y="292" fill="#ECFDF5" font-family="Segoe UI, Arial, sans-serif" font-size="18">Plotly Dash dashboard</text>
+  <text x="1225" y="322" fill="#D1FAE5" font-family="Segoe UI, Arial, sans-serif" font-size="16">Fleet, performance, status, quality</text>
+
+  <path d="M380 275H450" stroke="#7DD3FC" stroke-width="6" stroke-linecap="round" />
+  <path d="M720 275H790" stroke="#7DD3FC" stroke-width="6" stroke-linecap="round" />
+  <path d="M1110 275H1190" stroke="#86EFAC" stroke-width="6" stroke-linecap="round" />
+  <path d="M430 275L408 261V289L430 275Z" fill="#7DD3FC" />
+  <path d="M760 275L738 261V289L760 275Z" fill="#7DD3FC" />
+  <path d="M1160 275L1138 261V289L1160 275Z" fill="#86EFAC" />
+
+  <rect x="140" y="430" width="1320" height="320" rx="32" fill="#0B1220" fill-opacity="0.72" stroke="#1E293B" />
+  <text x="185" y="490" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Pipeline outputs and operational signals</text>
+
+  <rect x="185" y="535" width="280" height="160" rx="24" fill="#111827" stroke="#374151" />
+  <text x="220" y="575" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">processed_data.csv</text>
+  <text x="220" y="608" fill="#93C5FD" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">23</text>
+  <text x="280" y="608" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18">output columns</text>
+  <text x="220" y="645" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Normalized metrics plus days since update</text>
+
+  <rect x="505" y="535" width="280" height="160" rx="24" fill="#111827" stroke="#374151" />
+  <text x="540" y="575" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">transformation_log.json</text>
+  <text x="540" y="608" fill="#F59E0B" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">5</text>
+  <text x="575" y="608" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18">anomalies flagged</text>
+  <text x="540" y="645" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Imputation and validation trail kept visible</text>
+
+  <rect x="825" y="535" width="280" height="160" rx="24" fill="#111827" stroke="#374151" />
+  <text x="860" y="575" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Dashboard tabs</text>
+  <text x="860" y="608" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">4</text>
+  <text x="900" y="608" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18">analytical views</text>
+  <text x="860" y="645" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Overview, performance, status, quality</text>
+
+  <rect x="1145" y="535" width="280" height="160" rx="24" fill="#111827" stroke="#374151" />
+  <text x="1180" y="575" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Use case</text>
+  <text x="1180" y="608" fill="#34D399" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Engineering program control</text>
+  <text x="1180" y="645" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">One workflow for blade data, reviews, and QA</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="100" x2="1480" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC" />
+      <stop offset="1" stop-color="#E0F2FE" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)" />
+  <rect x="82" y="82" width="1436" height="736" rx="34" fill="#FFFFFF" stroke="#D9E2EC" />
+
+  <text x="130" y="146" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Performance Analysis</text>
+  <text x="130" y="186" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="18">Filter by blade stage and discipline to compare materials under thermal load</text>
+
+  <rect x="130" y="224" width="250" height="74" rx="20" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="156" y="255" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">BLADE STAGE</text>
+  <text x="156" y="284" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">1</text>
+  <path d="M333 258L351 276L369 258" stroke="#64748B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+  <rect x="404" y="224" width="318" height="74" rx="20" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="430" y="255" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">DISCIPLINE</text>
+  <text x="430" y="284" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">All</text>
+  <path d="M675 258L693 276L711 258" stroke="#64748B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+  <rect x="130" y="340" width="900" height="410" rx="28" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="170" y="392" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Max temperature vs creep life</text>
+  <line x1="192" y1="686" x2="952" y2="686" stroke="#CBD5E1" stroke-width="2" />
+  <line x1="192" y1="454" x2="192" y2="686" stroke="#CBD5E1" stroke-width="2" />
+
+  <circle cx="296" cy="614" r="14" fill="#E87722" />
+  <circle cx="352" cy="586" r="14" fill="#E87722" />
+  <circle cx="428" cy="550" r="14" fill="#3A7CA5" />
+  <circle cx="506" cy="522" r="14" fill="#3A7CA5" />
+  <circle cx="592" cy="468" r="14" fill="#27AE60" />
+  <circle cx="648" cy="440" r="14" fill="#27AE60" />
+  <circle cx="710" cy="500" r="18" fill="#27AE60" stroke="#0F172A" stroke-width="4" />
+  <circle cx="782" cy="410" r="18" fill="#27AE60" stroke="#0F172A" stroke-width="4" />
+  <circle cx="852" cy="642" r="18" fill="#E87722" stroke="#0F172A" stroke-width="4" />
+  <text x="808" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">Higher temperature</text>
+  <text x="118" y="468" transform="rotate(-90 118 468)" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">Higher creep life</text>
+
+  <rect x="1080" y="340" width="356" height="410" rx="28" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="1120" y="392" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Efficiency distribution</text>
+  <rect x="1134" y="638" width="40" height="56" rx="12" fill="#3A7CA5" />
+  <rect x="1188" y="596" width="40" height="98" rx="12" fill="#3A7CA5" />
+  <rect x="1242" y="530" width="40" height="164" rx="12" fill="#3A7CA5" />
+  <rect x="1296" y="474" width="40" height="220" rx="12" fill="#3A7CA5" />
+  <rect x="1350" y="560" width="40" height="134" rx="12" fill="#3A7CA5" />
+  <text x="1136" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="14">80%</text>
+  <text x="1190" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="14">84%</text>
+  <text x="1244" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="14">88%</text>
+  <text x="1298" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="14">92%</text>
+  <text x="1352" y="728" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="14">96%</text>
+
+  <rect x="1124" y="438" width="18" height="18" rx="5" fill="#E87722" />
+  <text x="1154" y="452" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="16">IN738</text>
+  <rect x="1228" y="438" width="18" height="18" rx="5" fill="#3A7CA5" />
+  <text x="1258" y="452" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="16">Rene 80</text>
+  <rect x="1350" y="438" width="18" height="18" rx="5" fill="#27AE60" />
+  <text x="1380" y="452" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="16">CMSX-4</text>
+</svg>

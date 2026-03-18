@@ -1,0 +1,53 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="100" x2="1480" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7ED" />
+      <stop offset="1" stop-color="#FEF2F2" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)" />
+  <rect x="82" y="82" width="1436" height="736" rx="34" fill="#FFFFFF" stroke="#F1D5DB" />
+
+  <text x="130" y="146" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Data Quality</text>
+  <text x="130" y="186" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="18">Imputation coverage, anomaly inspection, and transformation log for traceable QA</text>
+
+  <rect x="130" y="236" width="604" height="504" rx="28" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="170" y="288" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Missing values after imputation (%)</text>
+  <line x1="182" y1="654" x2="668" y2="654" stroke="#E5E7EB" stroke-width="2" />
+  <line x1="182" y1="386" x2="182" y2="654" stroke="#E5E7EB" stroke-width="2" />
+  <rect x="228" y="598" width="56" height="56" rx="14" fill="#F59E0B" />
+  <rect x="320" y="544" width="56" height="110" rx="14" fill="#F59E0B" />
+  <rect x="412" y="530" width="56" height="124" rx="14" fill="#F59E0B" />
+  <rect x="504" y="618" width="56" height="36" rx="14" fill="#F59E0B" />
+  <rect x="596" y="654" width="56" height="2" rx="1" fill="#3A7CA5" />
+  <text x="216" y="694" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">max temp</text>
+  <text x="296" y="694" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">tbc</text>
+  <text x="388" y="694" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">creep</text>
+  <text x="468" y="694" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">eff</text>
+  <text x="578" y="694" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">post run</text>
+
+  <rect x="770" y="236" width="648" height="260" rx="28" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="810" y="288" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Anomaly flags</text>
+  <rect x="810" y="324" width="568" height="38" rx="12" fill="#7F1D1D" />
+  <text x="836" y="348" fill="#FEE2E2" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">blade_id</text>
+  <text x="980" y="348" fill="#FEE2E2" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">max_temp_c</text>
+  <text x="1140" y="348" fill="#FEE2E2" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">efficiency_pct</text>
+  <text x="1304" y="348" fill="#FEE2E2" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">reason</text>
+  <rect x="810" y="378" width="568" height="28" rx="10" fill="#FEF2F2" />
+  <rect x="810" y="418" width="568" height="28" rx="10" fill="#FFF7ED" />
+  <rect x="810" y="458" width="568" height="28" rx="10" fill="#FEF2F2" />
+  <text x="836" y="396" fill="#7F1D1D" font-family="Segoe UI, Arial, sans-serif" font-size="14">5 flagged rows documented in processed_data.csv</text>
+
+  <rect x="770" y="528" width="648" height="212" rx="28" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="810" y="580" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Transformation log</text>
+  <rect x="810" y="612" width="74" height="28" rx="10" fill="#DBEAFE" />
+  <text x="832" y="631" fill="#1E40AF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">INFO</text>
+  <text x="902" y="631" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="14">Loaded 200 rows, 14 columns</text>
+  <rect x="810" y="650" width="104" height="28" rx="10" fill="#FEF3C7" />
+  <text x="830" y="669" fill="#92400E" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">WARNING</text>
+  <text x="930" y="669" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="14">max_temp_c: 2 outliers outside threshold</text>
+  <rect x="810" y="688" width="74" height="28" rx="10" fill="#DBEAFE" />
+  <text x="832" y="707" fill="#1E40AF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">INFO</text>
+  <text x="902" y="707" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="14">Saved 23-column processed export and audit trail</text>
+</svg>

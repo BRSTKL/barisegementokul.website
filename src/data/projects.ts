@@ -62,6 +62,72 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "turbine-data-management",
+    title: "Gas Turbine Blade Data Management System",
+    description:
+      "Standalone engineering analytics application that simulates blade program data, runs a documented cleaning pipeline, and exposes fleet, performance, status, and data-quality views in a Dash dashboard.",
+    longDescription:
+      "Built from the sibling `turbine-data-management` project, this case study models how a gas turbine blade engineering program can be managed through one structured workflow. The project combines synthetic dataset generation, schema validation, missing-value imputation, anomaly flagging, min-max normalization, and a four-tab Plotly Dash interface so engineering teams can review fleet health, material performance, review bottlenecks, and data quality from one place.",
+    category: "Data Intelligence",
+    tech: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Plotly Dash",
+      "Data Validation",
+      "Engineering Analytics",
+    ],
+    image: "turbine-data-management",
+    featured: true,
+    metrics: [
+      { label: "Dataset", value: "200 Blades" },
+      { label: "QA Flags", value: "5 Anomalies" },
+      { label: "Dashboard", value: "4 Tabs" },
+    ],
+    detailedMetrics: [
+      { label: "Pipeline", value: "Schema + Impute" },
+      { label: "Output", value: "23 Columns" },
+      { label: "Audit", value: "JSON Log" },
+    ],
+    gallery: [
+      {
+        src: "/featured-projects/turbine-data-management/01-architecture.svg",
+        alt: "Architecture flow for the gas turbine blade data management system",
+        label: "System architecture",
+        caption:
+          "The repo is structured as a clear flow: synthetic blade data generation, raw CSV storage, cleaning and validation, processed exports, and a Dash dashboard layer.",
+      },
+      {
+        src: "/featured-projects/turbine-data-management/02-overview.svg",
+        alt: "Fleet overview dashboard scene for the turbine data management project",
+        label: "Fleet overview",
+        caption:
+          "The first dashboard view rolls 200 blade records into KPI cards plus model and status summaries so program health can be scanned quickly.",
+      },
+      {
+        src: "/featured-projects/turbine-data-management/03-performance.svg",
+        alt: "Performance analysis dashboard scene with scatter and histogram charts",
+        label: "Performance analysis",
+        caption:
+          "Stage and discipline filters drive material-level comparisons across max temperature, creep life, and efficiency behavior.",
+      },
+      {
+        src: "/featured-projects/turbine-data-management/04-status.svg",
+        alt: "Project status tracker dashboard scene with stacked bars and data table",
+        label: "Project status",
+        caption:
+          "A status tracker tab groups work by engineer and approval state, then exposes blade-level records for operational follow-up.",
+      },
+      {
+        src: "/featured-projects/turbine-data-management/05-quality.svg",
+        alt: "Data quality dashboard scene showing missing values, anomaly flags, and transformation log",
+        label: "Data quality",
+        caption:
+          "The quality view closes the loop with imputation visibility, anomaly inspection, and a transformation log for traceable pipeline runs.",
+      },
+    ],
+  },
+  {
     id: "data-lab",
     title: "Construction Portfolio Data Lab",
     description:

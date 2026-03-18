@@ -1,0 +1,83 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="100" x2="1480" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC" />
+      <stop offset="1" stop-color="#EEF2FF" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)" />
+  <rect x="78" y="78" width="1444" height="744" rx="34" fill="#FFFFFF" stroke="#D9E2EC" />
+
+  <text x="126" y="142" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Project Status Tracker</text>
+  <text x="126" y="182" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="18">Filter workload by engineer, discipline, and review status</text>
+
+  <rect x="126" y="222" width="242" height="72" rx="20" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="152" y="252" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">ENGINEER</text>
+  <text x="152" y="280" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">All</text>
+
+  <rect x="392" y="222" width="260" height="72" rx="20" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="418" y="252" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">DISCIPLINE</text>
+  <text x="418" y="280" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">All</text>
+
+  <rect x="676" y="222" width="220" height="72" rx="20" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="702" y="252" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">STATUS</text>
+  <text x="702" y="280" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">All</text>
+
+  <rect x="126" y="338" width="1322" height="260" rx="28" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="166" y="388" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Items per engineer by status</text>
+  <line x1="182" y1="546" x2="1386" y2="546" stroke="#CBD5E1" stroke-width="2" />
+  <line x1="182" y1="430" x2="182" y2="546" stroke="#CBD5E1" stroke-width="2" />
+
+  <g>
+    <rect x="246" y="494" width="62" height="52" rx="12" fill="#94A3B8" />
+    <rect x="246" y="444" width="62" height="50" rx="12" fill="#E87722" />
+    <rect x="246" y="390" width="62" height="54" rx="12" fill="#27AE60" />
+    <text x="238" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">M. Fischer</text>
+  </g>
+  <g>
+    <rect x="432" y="502" width="62" height="44" rx="12" fill="#94A3B8" />
+    <rect x="432" y="454" width="62" height="48" rx="12" fill="#E87722" />
+    <rect x="432" y="402" width="62" height="52" rx="12" fill="#27AE60" />
+    <text x="430" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">L. Bauer</text>
+  </g>
+  <g>
+    <rect x="618" y="490" width="62" height="56" rx="12" fill="#94A3B8" />
+    <rect x="618" y="446" width="62" height="44" rx="12" fill="#E87722" />
+    <rect x="618" y="384" width="62" height="62" rx="12" fill="#27AE60" />
+    <text x="596" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">A. Schneider</text>
+  </g>
+  <g>
+    <rect x="804" y="506" width="62" height="40" rx="12" fill="#94A3B8" />
+    <rect x="804" y="454" width="62" height="52" rx="12" fill="#E87722" />
+    <rect x="804" y="398" width="62" height="56" rx="12" fill="#27AE60" />
+    <text x="792" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">J. Muller</text>
+  </g>
+  <g>
+    <rect x="990" y="512" width="62" height="34" rx="12" fill="#94A3B8" />
+    <rect x="990" y="462" width="62" height="50" rx="12" fill="#E87722" />
+    <rect x="990" y="394" width="62" height="68" rx="12" fill="#27AE60" />
+    <text x="992" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">K. Weber</text>
+  </g>
+  <g>
+    <rect x="1176" y="500" width="62" height="46" rx="12" fill="#94A3B8" />
+    <rect x="1176" y="450" width="62" height="50" rx="12" fill="#E87722" />
+    <rect x="1176" y="392" width="62" height="58" rx="12" fill="#27AE60" />
+    <text x="1158" y="578" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15">S. Richter</text>
+  </g>
+
+  <rect x="126" y="632" width="1322" height="144" rx="28" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="166" y="680" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Blade records table</text>
+  <rect x="166" y="704" width="1242" height="36" rx="12" fill="#1B2A4A" />
+  <text x="192" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Blade Id</text>
+  <text x="322" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Model</text>
+  <text x="472" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Stage</text>
+  <text x="586" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Material</text>
+  <text x="760" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Discipline</text>
+  <text x="948" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Engineer</text>
+  <text x="1110" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Status</text>
+  <text x="1242" y="728" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Updated</text>
+
+  <rect x="166" y="748" width="1242" height="16" rx="8" fill="#F8FAFC" />
+  <rect x="1086" y="746" width="96" height="20" rx="10" fill="#E87722" />
+</svg>

@@ -1,0 +1,76 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1500" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF6FF" />
+      <stop offset="1" stop-color="#DCEAFE" />
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1B2A4A" />
+      <stop offset="1" stop-color="#243B61" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)" />
+  <rect x="70" y="70" width="1460" height="760" rx="34" fill="#F8FAFC" stroke="#CBD5E1" />
+  <rect x="70" y="70" width="1460" height="88" rx="34" fill="url(#navy)" />
+  <text x="128" y="124" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Fleet Overview</text>
+  <text x="1228" y="124" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Last pipeline run: 18 Mar 2026</text>
+
+  <g>
+    <rect x="118" y="200" width="290" height="140" rx="26" fill="#FFFFFF" stroke="#D9E2EC" />
+    <text x="152" y="244" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">TOTAL BLADES</text>
+    <text x="152" y="306" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">200</text>
+    <text x="152" y="333" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Synthetic engineering records</text>
+  </g>
+  <g>
+    <rect x="438" y="200" width="290" height="140" rx="26" fill="#FFFFFF" stroke="#D9E2EC" />
+    <text x="472" y="244" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">APPROVED SHARE</text>
+    <text x="472" y="306" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">45%</text>
+    <text x="472" y="333" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Status mix from processed dataset</text>
+  </g>
+  <g>
+    <rect x="758" y="200" width="290" height="140" rx="26" fill="#FFFFFF" stroke="#D9E2EC" />
+    <text x="792" y="244" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">AVG CREEP LIFE</text>
+    <text x="792" y="306" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">33k h</text>
+    <text x="792" y="333" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Material reliability proxy</text>
+  </g>
+  <g>
+    <rect x="1078" y="200" width="334" height="140" rx="26" fill="#FFFFFF" stroke="#D9E2EC" />
+    <text x="1112" y="244" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">AVG EFFICIENCY</text>
+    <text x="1112" y="306" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">87.8%</text>
+    <text x="1112" y="333" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Normalized fleet performance signal</text>
+  </g>
+
+  <rect x="118" y="392" width="744" height="360" rx="30" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="158" y="446" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Blade count by turbine model</text>
+  <line x1="166" y1="692" x2="810" y2="692" stroke="#CBD5E1" stroke-width="2" />
+  <line x1="166" y1="505" x2="166" y2="692" stroke="#CBD5E1" stroke-width="2" />
+  <rect x="222" y="580" width="64" height="112" rx="16" fill="#E87722" />
+  <rect x="340" y="534" width="64" height="158" rx="16" fill="#E87722" />
+  <rect x="458" y="548" width="64" height="144" rx="16" fill="#E87722" />
+  <rect x="576" y="516" width="64" height="176" rx="16" fill="#E87722" />
+  <rect x="694" y="600" width="64" height="92" rx="16" fill="#E87722" />
+  <text x="212" y="730" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">SGT-800</text>
+  <text x="322" y="730" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">SGT-5000F</text>
+  <text x="440" y="730" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">SGT-6000G</text>
+  <text x="556" y="730" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">SGT-4000F</text>
+  <text x="686" y="730" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="16">SGT-700</text>
+
+  <rect x="902" y="392" width="510" height="360" rx="30" fill="#FFFFFF" stroke="#D9E2EC" />
+  <text x="942" y="446" fill="#1E293B" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Status distribution</text>
+  <circle cx="1110" cy="585" r="120" fill="#F1F5F9" />
+  <path d="M1110 585L1110 465A120 120 0 0 1 1229.9 581.1Z" fill="#27AE60" />
+  <path d="M1110 585L1229.9 581.1A120 120 0 0 1 1180.5 682.2Z" fill="#E87722" />
+  <path d="M1110 585L1180.5 682.2A120 120 0 0 1 1013.7 656.5Z" fill="#94A3B8" />
+  <path d="M1110 585L1013.7 656.5A120 120 0 0 1 1110 465Z" fill="#64748B" />
+  <circle cx="1110" cy="585" r="62" fill="#FFFFFF" />
+
+  <rect x="1268" y="508" width="20" height="20" rx="6" fill="#27AE60" />
+  <text x="1302" y="524" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="18">Approved</text>
+  <rect x="1268" y="554" width="20" height="20" rx="6" fill="#E87722" />
+  <text x="1302" y="570" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="18">In Review</text>
+  <rect x="1268" y="600" width="20" height="20" rx="6" fill="#94A3B8" />
+  <text x="1302" y="616" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="18">Draft</text>
+  <rect x="1268" y="646" width="20" height="20" rx="6" fill="#64748B" />
+  <text x="1302" y="662" fill="#334155" font-family="Segoe UI, Arial, sans-serif" font-size="18">Archived</text>
+</svg>

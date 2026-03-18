@@ -77,8 +77,13 @@ export const PROJECTS: Project[] = [
       "Data Validation",
       "Engineering Analytics",
     ],
+    projectType: "interactive-demo",
     image: "turbine-data-management",
     featured: true,
+    hasLiveDemo: true,
+    links: {
+      demo: "#project-live-demo",
+    },
     metrics: [
       { label: "Dataset", value: "200 Blades" },
       { label: "QA Flags", value: "5 Anomalies" },

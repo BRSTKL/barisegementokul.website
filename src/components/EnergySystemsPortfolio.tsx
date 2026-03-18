@@ -47,6 +47,10 @@ const ProjectPortfolioDataDemo = React.lazy(() =>
     import('./ProjectPortfolioDataDemo').then((module) => ({ default: module.ProjectPortfolioDataDemo }))
 );
 
+const TurbineDataManagementDemo = React.lazy(() =>
+    import('./TurbineDataManagementDemo').then((module) => ({ default: module.TurbineDataManagementDemo }))
+);
+
 interface Skill {
     name: string;
     level: number;
@@ -1046,6 +1050,16 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 <div className="animate-in fade-in slide-in-from-top-4 duration-500">
                                     {activeDemoId === 'smart-order-tracker' ? (
                                         <OrderTrackerDashboard />
+                                    ) : activeDemoId === 'turbine-data-management' ? (
+                                        <React.Suspense
+                                            fallback={
+                                                <div className="rounded-2xl border border-border bg-card/60 p-8 text-center text-muted-foreground">
+                                                    Loading interactive project demo...
+                                                </div>
+                                            }
+                                        >
+                                            <TurbineDataManagementDemo />
+                                        </React.Suspense>
                                     ) : (
                                         <React.Suspense
                                             fallback={

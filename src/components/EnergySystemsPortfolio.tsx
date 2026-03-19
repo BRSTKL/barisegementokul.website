@@ -1341,7 +1341,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 <CardContent className="pt-6">
                                     <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                                         <motion.a
-                                            href="mailto:barisegementokul@gmial.com"
+                                            href="mailto:barisegementokul@gmail.com"
                                             whileHover={{ scale: 1.05 }}
                                             className="flex items-start gap-4 rounded-lg border border-border p-4 transition-colors hover:border-primary sm:items-center"
                                         >
@@ -1350,7 +1350,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             </div>
                                             <div>
                                                 <div className="font-semibold">Email</div>
-                                                <div className="text-sm text-muted-foreground">barisegementokul@gmial.com</div>
+                                                <div className="text-sm text-muted-foreground">barisegementokul@gmail.com</div>
                                             </div>
                                         </motion.a>
 
@@ -1433,7 +1433,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                             <a href="https://github.com/BRSTKL" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                                 <Github className="w-5 h-5" />
                             </a>
-                            <a href="mailto:barisegementokul@gmial.com" className="hover:text-primary transition-colors">
+                            <a href="mailto:barisegementokul@gmail.com" className="hover:text-primary transition-colors">
                                 <Mail className="w-5 h-5" />
                             </a>
                         </div>

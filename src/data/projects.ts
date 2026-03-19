@@ -62,6 +62,34 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "solar-yield-estimator",
+    title: "Solar Yield Estimator",
+    description:
+      "Interactive PV sizing demo that geocodes a city or pinned coordinates, retrieves historical irradiance, estimates annual yield and monthly production, and adds an English Gemini engineering commentary.",
+    longDescription:
+      "Solar engineering demo for portfolio visitors. Search by city or click a custom point on the interactive location canvas, tune system size, tilt, azimuth, and system type, then pull 2018-2022 Open-Meteo irradiance data, calculate climate-adjusted PV yield, visualize monthly production, and request an English AI review through a secure Gemini proxy.",
+    category: "Sustainability",
+    projectType: "interactive-demo",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Nominatim API", "Open-Meteo", "Gemini API"],
+    image: "solar-yield-estimator",
+    featured: true,
+    hasLiveDemo: true,
+    links: {
+      demo: "#project-live-demo",
+      github: "https://github.com/BRSTKL/barisegementokul.website",
+    },
+    metrics: [
+      { label: "Climate Data", value: "2018-2022" },
+      { label: "AI Output", value: "English Review" },
+      { label: "Inputs", value: "Map + PV Setup" },
+    ],
+    detailedMetrics: [
+      { label: "Geocoding", value: "Nominatim" },
+      { label: "Irradiance", value: "Open-Meteo" },
+      { label: "Charting", value: "Recharts" },
+    ],
+  },
+  {
     id: "turbine-data-management",
     title: "Gas Turbine Blade Data Management System",
     description:

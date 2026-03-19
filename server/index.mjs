@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url"
 import http from "node:http"
 
 import { generateGeminiInterpretiveSummary } from "./interpretive-summary.mjs"
+import { generateGeminiSolarAnalysis } from "./solar-analysis.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -19,11 +20,17 @@ const SERVE_STATIC = process.env.SERVE_STATIC !== "0"
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ""
 const GEMINI_BASE_URL = process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta"
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3-flash-preview"
+const SOLAR_GEMINI_MODEL = process.env.SOLAR_GEMINI_MODEL || "gemini-2.0-flash"
 
 const server = http.createServer(async (request, response) => {
   try {
     if (request.method === "POST" && request.url === "/api/interpretive-summary") {
       await handleInterpretiveSummary(request, response)
+      return
+    }
+
+    if (request.method === "POST" && request.url === "/api/solar-estimator-analysis") {
+      await handleSolarEstimatorAnalysis(request, response)
       return
     }
 
@@ -81,6 +88,68 @@ async function handleInterpretiveSummary(request, response) {
   })
 
   writeJson(response, 200, summary)
+}
+
+async function handleSolarEstimatorAnalysis(request, response) {
+  if (!GEMINI_API_KEY) {
+    writeJson(response, 500, {
+      error: {
+        message: "Missing GEMINI_API_KEY on the server. Add it to .env.local or the host environment.",
+      },
+    })
+    return
+  }
+
+  const body = await readJsonBody(request)
+  const analysis = body?.analysis
+  const requestedModel = typeof body?.model === "string" && body.model.trim() ? body.model.trim() : SOLAR_GEMINI_MODEL
+
+  if (!analysis || typeof analysis !== "object") {
+    writeJson(response, 400, {
+      error: {
+        message: "Request body must include an analysis object.",
+      },
+    })
+    return
+  }
+
+  let summary
+
+  try {
+    summary = await generateGeminiSolarAnalysis({
+      analysis,
+      apiKey: GEMINI_API_KEY,
+      baseUrl: GEMINI_BASE_URL,
+      model: requestedModel,
+    })
+  } catch (error) {
+    if (!shouldRetrySolarModel(error, requestedModel)) {
+      throw error
+    }
+
+    summary = await generateGeminiSolarAnalysis({
+      analysis,
+      apiKey: GEMINI_API_KEY,
+      baseUrl: GEMINI_BASE_URL,
+      model: GEMINI_MODEL,
+    })
+  }
+
+  writeJson(response, 200, summary)
+}
+
+function shouldRetrySolarModel(error, requestedModel) {
+  if (!error || !(error instanceof Error)) {
+    return false
+  }
+
+  if (requestedModel === GEMINI_MODEL) {
+    return false
+  }
+
+  const message = error.message.toLowerCase()
+
+  return message.includes("quota exceeded") || message.includes("limit: 0")
 }
 
 function serveStaticApp(request, response) {

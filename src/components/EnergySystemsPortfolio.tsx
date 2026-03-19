@@ -51,6 +51,10 @@ const TurbineDataManagementDemo = React.lazy(() =>
     import('./TurbineDataManagementDemo').then((module) => ({ default: module.TurbineDataManagementDemo }))
 );
 
+const SolarEstimator = React.lazy(() =>
+    import('./SolarEstimatorModern').then((module) => ({ default: module.SolarEstimator }))
+);
+
 interface Skill {
     name: string;
     level: number;
@@ -634,7 +638,12 @@ const EnergySystemsPortfolio: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
 
                 {/* Animated Energy Flow Circuits */}
-                <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                    className="absolute inset-0 h-full w-full opacity-20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                >
                     <defs>
                         <linearGradient id="circuit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
@@ -644,7 +653,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                     {[...Array(5)].map((_, i) => (
                         <motion.path
                             key={i}
-                            d={`M ${i * 25}% 0 L ${i * 25 + 10}% 50 L ${i * 25}% 100`}
+                            d={`M ${i * 20} 0 L ${i * 20 + 10} 50 L ${i * 20} 100`}
                             stroke="url(#circuit-gradient)"
                             strokeWidth="2"
                             fill="none"
@@ -1050,6 +1059,16 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 <div className="animate-in fade-in slide-in-from-top-4 duration-500">
                                     {activeDemoId === 'smart-order-tracker' ? (
                                         <OrderTrackerDashboard />
+                                    ) : activeDemoId === 'solar-yield-estimator' ? (
+                                        <React.Suspense
+                                            fallback={
+                                                <div className="rounded-2xl border border-border bg-card/60 p-8 text-center text-muted-foreground">
+                                                    Loading interactive project demo...
+                                                </div>
+                                            }
+                                        >
+                                            <SolarEstimator />
+                                        </React.Suspense>
                                     ) : activeDemoId === 'turbine-data-management' ? (
                                         <React.Suspense
                                             fallback={

@@ -1341,7 +1341,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                 <CardContent className="pt-6">
                                     <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                                         <motion.a
-                                            href="mailto:engineer@example.com"
+                                            href="mailto:barisegementokul@gmial.com"
                                             whileHover={{ scale: 1.05 }}
                                             className="flex items-start gap-4 rounded-lg border border-border p-4 transition-colors hover:border-primary sm:items-center"
                                         >
@@ -1350,12 +1350,12 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             </div>
                                             <div>
                                                 <div className="font-semibold">Email</div>
-                                                <div className="text-sm text-muted-foreground">engineer@example.com</div>
+                                                <div className="text-sm text-muted-foreground">barisegementokul@gmial.com</div>
                                             </div>
                                         </motion.a>
 
                                         <motion.a
-                                            href="https://linkedin.com"
+                                            href="https://www.linkedin.com/in/baris-egemen-tokul-8016751b5"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             whileHover={{ scale: 1.05 }}
@@ -1366,12 +1366,12 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             </div>
                                             <div>
                                                 <div className="font-semibold">LinkedIn</div>
-                                                <div className="text-sm text-muted-foreground">Connect with me</div>
+                                                <div className="text-sm text-muted-foreground">baris-egemen-tokul-8016751b5</div>
                                             </div>
                                         </motion.a>
 
                                         <motion.a
-                                            href="https://github.com"
+                                            href="https://github.com/BRSTKL"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             whileHover={{ scale: 1.05 }}
@@ -1382,7 +1382,7 @@ const EnergySystemsPortfolio: React.FC = () => {
                                             </div>
                                             <div>
                                                 <div className="font-semibold">GitHub</div>
-                                                <div className="text-sm text-muted-foreground">View my code</div>
+                                                <div className="text-sm text-muted-foreground">github.com/BRSTKL</div>
                                             </div>
                                         </motion.a>
 
@@ -1427,13 +1427,13 @@ const EnergySystemsPortfolio: React.FC = () => {
                             © 2024 All rights reserved. Building a sustainable future.
                         </div>
                         <div className="flex items-center gap-4">
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                            <a href="https://www.linkedin.com/in/baris-egemen-tokul-8016751b5" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                                 <Linkedin className="w-5 h-5" />
                             </a>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                            <a href="https://github.com/BRSTKL" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                                 <Github className="w-5 h-5" />
                             </a>
-                            <a href="mailto:engineer@example.com" className="hover:text-primary transition-colors">
+                            <a href="mailto:barisegementokul@gmial.com" className="hover:text-primary transition-colors">
                                 <Mail className="w-5 h-5" />
                             </a>
                         </div>

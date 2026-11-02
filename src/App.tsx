@@ -1,13 +1,7 @@
-import EnergySystemsPortfolio from './components/EnergySystemsPortfolio'
-import { ThemeProvider } from "./components/theme-provider"
-
+import MinimalEnergyPortfolio from './components/MinimalEnergyPortfolio'
 
 function App() {
-    return (
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <EnergySystemsPortfolio />
-        </ThemeProvider>
-    )
+    return <MinimalEnergyPortfolio />
 }
 
 export default App
